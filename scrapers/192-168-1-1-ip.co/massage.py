@@ -102,10 +102,10 @@ def processRow(row):
     out['part'] = 'a'
     out['vendor'] = processVendor(row)
     out['product'] = processProduct(row)
-    out['version'] = 'a'
-    out['update'] = 'a'
-    out['edition'] = 'a'
-    out['language'] = 'a'
+    out['version'] = 'ANY'
+    out['update'] = 'ANY'
+    out['edition'] = 'ANY'
+    out['language'] = 'ANY'
     out['protocol'] = 'Unknown'
     out['references'] = processReference(row)
 
@@ -131,6 +131,6 @@ module.exports = {
 };
 ''' % output
 
-with open('data.js', 'w') as f:
+with open('../../api/data/data.js', 'w') as f:
     f.write(output)
 
