@@ -1,0 +1,13 @@
+{
+    "part": "a|o|h"
+    "vendor": "Something",
+    "product": "something else",
+    "version": "dhj",
+    "update": "tesay",
+    "edition": "ertherj",
+    "language": "dgfhsth",
+    "references": ["http://something.com"]
+    "username": "admin",
+    "password": "yes",
+    "protocol": "Unknown"
+}

@@ -1,0 +1,2039 @@
+1	100Fio Networks
+2	100Fio-Networks
+3	11Wave
+4	1net1
+5	2Wire
+6	3BB
+7	3Com
+8	3GO
+9	3JTech
+10	3M
+11	3WARE
+12	4G Systems
+13	4Home
+14	4ipnet
+1962	7Links
+15	8devices
+16	8level
+17	@Road
+18	A-Link
+19	ABB
+20	Abicom
+21	Abit
+22	AboCom
+23	Above Cable
+24	ABS
+25	ACC
+26	Accelerated
+27	ACCELERATED NETWORKS
+28	ACCONET
+29	Accton
+30	ACCTON T-ONLINE
+31	Aceex
+32	Acelink
+33	Acer
+1963	Acme Systems
+34	ACorp
+35	ACTi
+36	Actiontec
+37	Adaptec
+38	ADATA
+39	ADB
+40	ADB / Pirelli
+41	ADC
+42	ADC KENTROX
+43	Adcon Telemetry
+44	Addon
+45	Addtron
+46	ADI Engineering
+47	ADIC
+48	ADK
+49	Adobe
+50	ADP
+51	ADT
+52	Adtech
+53	Adtran
+1964	Adtran Bluesocket
+54	Advanced
+55	Advantech
+56	Advantek
+57	Advantek Networks
+58	AeroGarden
+59	Aerohive
+60	Aerohive Networks
+61	Aeromax
+62	AeroScout
+63	Aethra
+64	Aethra Starvoice
+65	Afoundry
+66	Agasio
+67	Agere
+68	AGK Nordic
+69	AGPtek
+70	AHOKU
+71	AIRAYA
+72	Airespace
+73	AIRETOS
+74	Airgo
+75	AirLAN
+76	Airlink 101
+77	Airlink+
+78	Airlink-101
+79	Airlink101
+80	AirLinkWiFi
+81	AirLive
+82	Airlive / Ovislink
+83	AirMagnet
+84	Airnet
+85	AirRouter
+86	Airsonics
+87	Airspan
+88	AirTies
+89	Airtight
+90	AirTight Networks
+91	AirVast
+92	Airway
+93	AKiTio
+94	Aladdin
+95	ALAXALA
+96	Alcatel
+97	Alcatel Lucent
+98	Alcatel OneTouch
+99	Alcatel-Lucent
+100	ALFA
+101	ALFA Network
+102	Alfex
+103	Alice
+104	Alice Box
+105	Alien
+106	Allied
+107	Allied Data
+108	Allied Telesis
+109	Allied Telesyn
+110	Allied-Data
+111	Allied-Telesis
+112	Allied-Telesyn
+113	Allnet
+1965	Allo
+114	Allot
+115	Alpha
+116	Alpha Networks
+117	Alpha Telecom
+118	Alphion
+119	Alstom
+120	Altai
+121	Alteon
+122	Altice Labs
+123	Aluratek
+124	Alvarion
+125	AM Telecom
+126	Amazon
+127	AmazonBasics
+128	Ambeon
+129	AmbiCom
+130	Ambit
+131	Ambit Microsystems
+132	Amer.com
+133	AMI
+134	Amigo
+135	Amino
+136	AMIT
+137	AMITECH
+138	AMPAK
+139	Amped
+140	Amped Wireless
+141	Amped-Wireless
+142	AmpliFi
+143	Amptron
+144	AmTRAN
+145	AMX
+146	Andover
+147	ANDOVER CONTROLS
+148	Anker
+149	Ansel
+150	AOC
+151	Aolynk
+152	AOpen
+153	AP Router
+154	Apache
+155	APC
+156	Aperion Audio
+157	Apotop
+158	Apple
+159	AppNeta
+160	Arada
+161	Araknis Networks
+162	ARC
+163	ARC Wireless
+164	Arcadyan
+165	Arcor
+166	Areca
+167	Arescom
+168	ARGtek
+169	Argus
+170	Argus Technologies
+171	Arkview
+172	Arlotto
+173	Arris
+1966	ARRIS SURFboard
+174	Arrowpoint
+175	Art2Wave
+176	ARTEM
+177	Articonet
+178	Artnet
+179	Aruba Networks
+1967	Arylic
+180	Asante
+181	Ascend
+182	Ascom
+183	Asia Pacific Microsystems
+184	AsiaRF
+185	Askey
+186	ASMACK
+187	ASMAX
+188	Asoka
+189	ASPECT
+190	ASRock
+191	AST
+192	Astute Medical
+193	ASUS
+194	AT&amp;T
+1968	AT&amp;T
+195	Atcom
+196	ATEL
+197	Atel Electronics
+198	Atheros
+199	Ativa
+200	Atlantis
+201	Atlantis Land
+202	Atlantis-Land
+203	Atlassian
+204	ATnT
+205	atop Technologies
+206	ATT
+207	Attachmate
+208	Audioactive
+209	AudioCodes
+210	Aukey
+211	AusLinx
+212	Autodesk
+1969	Autonet
+213	Avaya
+214	Avenger
+215	AVM
+216	Award
+217	AWB
+218	AWB Networks
+219	AWB-Networks
+220	AWIND
+221	Axent
+222	Axesstel
+223	Aximcom
+224	Axis
+225	Axus
+226	Axway
+227	AZiO
+228	Aztech
+229	AzureWave
+230	B-LINK
+231	Baicells
+1970	Banana Pi
+232	BandLuxe
+233	Bandridge
+234	Bandspeed
+235	Barco
+236	Barracuda
+237	BaudTec
+238	Bausch
+239	BAUSCH DATACOM
+240	Bay
+241	Bay Networks
+242	Baytec
+243	BCM
+1971	BDCOM
+244	BEA
+245	BeagleBoard.org
+246	Beam
+247	BearExtender
+248	bebo
+249	BEC Technologies
+250	BEC-Technologies
+251	Beckhoff Automation GmbH
+252	Beeline
+1972	Beelink
+253	Beetal
+254	Beetel
+255	BelAir Networks
+256	Belgacom
+257	Belkin
+258	Bell
+259	Bellnet
+260	BenQ
+261	Best
+262	Best Data
+263	BestPractical
+264	BetaBrite
+265	BeWAN
+266	Bigfoot Networks
+267	Billington
+268	Billion
+269	Billionton
+270	Binatone
+271	Bintec
+272	Bintec Elmeg
+273	Biodata
+274	Biostar
+275	Biscom
+276	Bitdefender
+277	Bitmain
+278	BizDesign
+279	BK Ultrasound
+280	Black
+281	Black Box
+282	Blackberry
+283	BlackBox
+284	Blanc
+1973	Bleuciel
+285	Blitzz
+286	Blue
+287	BLUE COAT SYSTEMS
+288	Blue Thunder
+1974	Blueendless
+289	bluesocket
+290	Bluetake
+291	Blupont
+292	BMC
+293	BMC SOFTWARE
+294	Borland
+295	Borri
+296	Boson
+297	Bountiful
+298	Bountiful WiFi
+299	Bountiful-WiFi
+300	Brand
+301	BreezeCOM
+302	Brickcom
+303	Brite-view
+304	bRoad Lanner
+305	Broadcom
+306	Broadlogic
+307	BroadMax
+308	Broadnext
+309	Broadxent
+310	Brocade
+311	BroMax
+312	Brookstone
+313	Brother
+314	Browan
+315	BSkyB
+316	BT
+317	Bticino
+318	Budget 1 Wireless
+319	Buffalo
+320	C3-TECH
+321	Cabac
+322	Cable
+323	CABLE AND WIRELESS
+324	Cable N Wireless
+325	Cable-and-Wireless
+326	Cabletron
+327	CACE Technologies
+328	Calix
+329	Call-Direct
+330	Cambium Networks
+331	Cambridge Industries Group
+332	Cameo
+333	Canon
+334	Canyon
+335	Capricorn
+336	Captivate Network
+337	Card King
+338	CAREL
+339	Caremo
+340	CareStream
+341	Carlo Gavazzi
+342	Carsten
+343	CastleNet
+344	Cayman
+345	CBN
+346	CBN Inc
+347	CC&amp;C
+348	CC&amp;C
+349	CD-R KING
+350	CD-R-King
+351	Celeno
+352	CELERITY
+353	Celleden
+354	CELLIT
+355	Cellvision
+356	CenDyne
+357	CenturyLink
+358	Ceragon
+359	Cerberus Adsl
+360	Cerio
+1975	Ceton
+361	CGI
+362	Champion Asia Digital Technology Limited
+1976	Channel Master
+363	Charter
+364	Chase
+365	Checkpoint
+366	China Hualu Group
+367	ChinaMobile
+368	ChipSiP
+369	Chumby
+370	Chuming
+371	Chung Nam
+372	Cideko
+373	CIPHERTRUST
+374	Cirago
+375	Circle Media
+376	Cisco
+377	Cisco Linksys
+378	Citrix
+379	Claris
+380	Clarity Design
+381	CLEAR
+382	ClearAccess
+383	ClearOne
+384	ClimateWorx International
+385	ClinicPro
+1977	ClockworkPi
+386	Cloud Engines
+387	Clover
+388	CNet
+389	Cobalt
+390	CodeLathe
+391	CodeLathe LLC
+1978	Coexistence
+392	Colubris
+393	Colubris Networks
+394	COM3
+395	Comcast
+396	Comersus
+397	COMFAST
+398	CommScope
+399	Comodo
+400	Compal
+401	Compal Broadband Networks
+402	Compaq
+403	Compex
+404	Compro
+405	Compualynx
+406	Compumedics
+407	CompUSA
+408	Computer
+409	Comstar
+410	Comtrend
+411	Conceptronic
+412	Concord
+413	Conexant
+414	Conitec
+1979	Connected Data
+415	Connectland
+416	Contec
+417	Contemporary Control Systems
+418	Control4
+419	Corecess
+420	Coredy
+421	corega
+422	Coretronic
+423	Corinex
+424	Corsair
+425	Cosy
+426	Covertix
+427	Coyote-Point
+428	CradlePoint
+429	Creative
+430	Creatix
+431	Creator
+432	Crestron
+433	Crewave
+434	Cricut
+435	Crypto
+436	Crystalview
+437	CT Systems
+438	CT-UNITE
+439	CTC
+440	CTC UNION
+441	CTC-Union
+442	CTSystems
+443	CTX
+1980	Cubietech
+444	Cudy
+445	CyberGuard
+446	CyberMax
+447	CyberMaxx
+448	Cyberoam
+449	Cybersafe
+450	CyberTAN
+451	Cyclades
+452	Cyfre
+453	CZ.NIC
+454	d-broad
+455	D-Link
+456	DABS
+457	Daewoo
+458	Dallas
+459	DALLAS SEMICONDUCTORS
+460	Dana
+461	Dane-Elec
+462	DareGlobal
+463	Darkman
+464	Dasan
+1981	Dasan Zhone Solutions
+465	Dassault
+466	Data
+467	Data Connect
+468	Data-Alliance
+469	Datacom
+470	Datasensor
+471	Datawizard
+472	Datel
+473	Datex-Ohmeda
+474	Davolink
+475	Davox
+476	Daytek
+477	Dbii Networks
+1982	DBL
+478	DBTel
+479	DD-WRT
+480	Deako
+481	DealExtreme
+482	Debian
+483	DEERFIELD
+484	Deif
+485	Dell
+486	Delta Electronics
+487	Delta Networks
+488	DEMARC
+489	Desay A&amp;V Science and Technology
+490	DEUTSCH TELEKOMM
+491	Deutsche
+492	DEUTSCHE TELEKOM
+493	Develcon
+1983	Devolo
+494	DeWalt
+495	Diamond
+496	Dick Smith Elec
+497	Dictaphone
+498	Digi
+499	Digiboard
+500	Digicom
+501	Digiconnect
+502	Digicorp
+503	Digicraft
+504	DIGISOL
+505	Digital
+506	Digital China Networks
+507	Digital Path
+508	Digitus
+509	Digium
+510	DirecTV
+511	DirecWay
+512	Discar
+513	Divar
+514	Dlink
+515	dog hunter
+516	Dok
+517	Dongguan Xinan Sunrise Electronic
+518	Doodle Labs
+519	Double Win
+520	Dovado
+521	DQ Technology
+522	DrayTek
+523	Dreambox
+524	Dropcam
+525	Droplit
+526	DS-LINK
+527	DSLink
+528	Ducati
+529	Dupont
+530	Dynalink
+531	Dynamode
+532	Dynex
+533	Dynix
+1984	DZS
+534	E Tec
+535	E-CON
+1985	E-Lins
+536	E-Tech
+537	E-TOP
+538	EASIX
+539	Easy Touch
+540	EasyAcc
+541	Eaton
+542	Echelon
+543	ECHOLIFE
+544	Echostar
+545	ECI
+546	Eclipse WiFi
+547	Ecom
+548	Econ
+549	Edge-corE
+550	Edgeless
+551	Edgewater Networks
+552	Edimax
+553	EDUP
+554	EDUPLINK
+555	EE
+556	eero
+557	Eeyelog
+558	Efficient
+559	Efficient Networks
+560	Efficient Siemens
+561	Egenera
+562	eGig
+563	Egoman
+564	EHome
+565	Eicon Networks
+566	Ekahau
+567	Ektron
+568	Elcon
+569	Elecom
+570	electric imp
+571	Electro Industries GaugeTech
+572	Elitegroup Computer Systems
+573	Elron
+574	ELSA
+575	Eltel
+576	Eltex
+577	ematic
+578	Embarq
+1986	Embest Technology
+579	EMC
+580	EMC Tech
+581	Emerson
+582	Eminent
+583	Emitech
+584	Emotiv
+585	Emtac
+586	Emtec
+587	Enable Networks
+588	EnCAD
+589	Encore
+590	Energy Imports
+591	EnGenius
+592	EnGenius / Senao
+593	Enhydra
+594	ENJsoft
+595	Enkom
+596	Enox
+597	Enterasys
+598	ENTES
+599	Entone
+600	ENTRUST
+601	EPiServer
+602	EPoX
+603	Epson
+604	eQ-3
+605	Ericsson
+606	eSeSIX
+607	ESP
+608	Espressif
+609	Etec
+610	Eumitcom
+611	Eusso
+612	Everest
+613	Everest Network Solutions
+1987	Everest Networks
+614	EverFocus
+615	eWON
+616	Exabyte
+617	Exacq
+618	Exinda
+619	Extended
+620	Extreme
+621	Extreme Networks
+622	Eye-Fi
+623	eZ
+624	EZURiO
+625	EZVIZ
+626	F-Secure
+627	F5
+628	F5-NETWORKS
+629	Falcon
+630	FANTEC
+631	FAST
+632	Fastwire
+633	FatWire
+634	fenvi
+635	Fi Win
+636	Fiber Home
+637	FiberHome
+638	Fiberline
+639	Fiberlogic
+1988	Firefly
+640	Firetide
+641	Fitbit
+642	Flaircomm
+643	Flextronics
+644	FLOWPOINT
+645	Flying Voice
+646	Flyingvoice
+647	Fn-Link
+648	Fon Wireless
+649	Forbes
+650	Fortinet
+651	Fortress Technology
+652	Foscam
+653	FOT
+654	Foundry
+655	Foundry Networks
+656	Foxconn
+657	FPT
+658	FPT Telecom
+659	Franklin
+660	Franklin Wireless
+1989	Free
+661	Freecom
+662	FREEDIO
+663	Freedocast
+664	Freedom9
+665	FreedomPop
+666	Freenet
+667	FreePBX
+668	FREETECH
+669	FreeWiFiLink
+1990	FriendlyARM
+670	FRITZ
+671	FRITZ BOX
+672	Fry's Electronics
+673	Frys
+674	FTZ Oplink
+675	Fu Chan
+676	Fuji
+677	Fujitsu
+678	Fujitsu Siemens
+679	Full River
+680	Fullwell
+681	Funk
+682	FUNK SOFTWARE
+1991	Furrion
+683	Furuno
+684	Galacticomm
+685	Gandalf
+686	Garmin
+687	Gateway
+688	Gateworks
+689	GBOX Technology
+690	GE
+691	Geek ADSL
+692	GeekADSL
+693	Geeklog
+694	Geewan
+695	Gembird
+696	Gemtek
+697	General
+698	General Electric
+699	General Electric Digital Energy
+700	General Electric Healthcare
+701	General Electric Intelligent Platforms
+702	Generic
+1992	Genesi
+703	Genexis
+704	Geniatech
+705	Gennet OxyGEN
+706	Gennet-OxyGEN
+707	GeoVision
+708	Gericom
+709	Get
+710	getnet
+711	Gezz
+712	GIGA
+713	Giga Devices
+714	Gigabyte
+715	GigaFast
+716	GigaFu
+1993	GL Technologies
+717	GL.iNet
+718	Glftpd
+719	Global Sun
+720	GlobalScale
+721	Globespan
+722	GMesh
+723	Gnet
+724	Goldweb
+725	GooBang Doo
+726	Google
+727	GoPro
+728	Gossamer
+729	Grandstream
+730	Gravis Plus
+731	Great Speed
+732	Great Wall
+733	Greatspeed
+734	Green Packet
+735	Greenpacket
+736	Greenwave Systems
+737	GreyFox
+1994	Gryphon
+1995	Gryphon Online Safety
+738	GSD
+739	Gstar Technology
+1996	GUANZHI
+740	GuardOne
+741	Guillemot
+742	GVC
+743	H2O
+744	H3C
+745	Habey
+746	Hak5
+747	HALO
+748	Hama
+749	Hame
+750	Hamlet
+751	Handlink
+752	Haoliyuan (Shenzhen) Electronic
+753	Hardkernel
+754	Harris
+755	Harvilon
+756	Hatari
+757	Hawking
+758	Hayes
+759	Heatmiser
+760	HED
+761	Helmholz Systeme
+762	Hemoco
+763	Hena
+764	Hewlett Packard
+765	Hewlett-Packard
+766	hField
+767	Hi-Link
+768	Hichan Technology
+1997	HIMS
+769	hipstreet
+770	Hiro
+771	Hirschmann
+772	Hitachi
+773	Hitron
+774	Hitron Technologies
+775	Hitron-Technologies
+776	HiWiFi
+777	HL-Tech
+778	HollySys Automation Technologies
+779	Homeline
+780	Honeywell
+781	Hongdian
+782	HooToo
+783	Horizon
+784	Hot
+785	HotBrick
+786	Hotline
+787	HP
+788	HTC
+789	Huawei
+790	Hughes
+791	Hui Zhou Gaoshengda
+792	Humax
+793	Hwa Yao
+794	Hyoco
+795	Hyperic
+796	Hyundai
+797	i-connect
+798	I-O DATA
+799	iB
+800	IBaby Labs
+801	iBall
+802	iBall Baton
+803	IBLITZZ
+804	IBM
+805	iBoss
+806	IC Intracom
+807	ice.net
+808	ICIDU
+809	Icotera
+810	Icron
+811	IDream
+812	IgniteNet
+813	IGNITION Design Labs
+814	ihiji
+815	IHOI
+816	iiNet
+817	IMAI
+818	Imperia
+819	Inca
+820	INCHON
+821	Inedo
+822	Inexq
+823	iNexQ (Unex)
+824	Info-Motion
+825	Infomark
+826	Informix
+827	InfoSmart
+828	Infotec
+829	Infrant
+830	innacomm
+831	innoband
+832	Innomedia
+833	Innotech
+834	Innovaphone
+835	Inseego
+836	Inseego / Novatel
+837	Insignia
+838	Integral
+839	INTEGRAL TECHNOLOGIES
+840	Integrated
+841	Intel
+842	INTEL SHIVA
+843	Intelbras
+844	Intellicom
+845	Intelligent Technology
+846	Intellinet
+847	Intellitouch
+848	Inteno
+849	Intenso
+850	INTERBASE
+851	Intercross
+852	iNTERFACEWARE
+853	Intermec
+854	Internet
+855	INTERSHOP
+856	Intersil
+857	INTERSYSTEMS
+858	Intertex
+859	Intex
+860	Intracom
+861	Inventel
+862	IOGear
+863	Iomega
+864	ion
+865	Ionics EMS
+866	IP-COM
+867	iPPea
+868	iPSTAR
+869	Ipswitch
+870	ipTIME
+871	IQinVision
+872	IRC
+873	IronPort
+874	Iskon
+875	Iskratel
+876	ISONWIFI
+877	iSWAG
+878	ISY
+879	ITI
+880	Itian
+881	Itus Networks
+882	Iwill
+883	j5 Create
+884	JAHT
+885	JAMF
+886	Janitza
+887	Japan Radio
+888	Jaspersoft
+889	JCG
+890	JD
+891	JD EDWARDS
+892	JDE
+893	JDS
+894	JDS MICROPROCESSING
+895	Jean-Philippe
+896	Jensen
+897	Jensen Scandinavia
+898	Jensen-Scandinavia
+899	Jetform
+1998	Jetstream
+900	Jetway
+901	Jio
+902	JJPlus
+903	JLZT-LINK
+904	Johnson
+905	Joss
+906	Juniper
+907	Juniper Networks
+908	Junxion
+1999	Juplink
+909	Justec
+910	Justin
+911	JVC Kenwood
+912	Kaiomy
+913	Kalatel
+914	KAON Media
+915	KAONMEDIA
+916	Kaptest
+917	Kasda
+918	Kcorp
+919	KCORP Lifestyle
+920	Keebox
+921	Keewifi
+922	Kentico
+923	Kethinov
+924	Keyence
+925	Keyscan
+926	Keyteck
+927	Khadas
+2000	Kimax
+928	Kingnet
+929	Kingston
+930	KingType
+931	Kinivo
+2001	KitVision
+932	Kobian
+933	Kobo
+934	Kodak
+935	KOHO
+936	Konica
+937	KONICA MINOLTA
+938	KonicaMinolta
+939	Konig
+940	Kostal Solar
+941	Kozumi
+942	KPN
+943	Kpnetworks
+944	Kraun
+945	Kronos
+946	KTI
+947	Kyocera
+948	KZTECH
+949	L-Com
+950	L7 Networks
+951	La Fonera
+952	LaCie
+953	Laird
+954	LANCOM
+955	Lanier
+956	LanReady
+957	LANSA
+958	Lantech
+959	LANTRONICS
+960	Lantronix
+961	Latis
+962	LATIS NETWORK
+963	Lava
+964	Layer3 TV
+965	LB-LINK
+966	Leading
+967	Lectron
+968	legra
+969	legrand
+970	Lenel
+971	Lenovo
+972	lesswire
+973	Level One
+974	LevelOne
+975	Leviton
+976	Lexmark
+977	LG
+978	LG-Ericsson
+979	LG-Nortel
+980	LGIC
+2002	Libre Computer
+981	Libya
+982	Liebert
+983	LIFX
+984	Linetec
+985	Link-Max
+986	Linking
+987	LinkIt Smart
+988	Linkpro
+989	Linkskey
+2003	LinkSprite
+990	Linksys
+991	Linux
+2004	Lippert
+992	Lippert Components
+993	Liquidware
+994	Lite-On
+995	Livestream
+996	Livingston
+997	LM Technologies
+998	Lockdown
+999	LOCKDOWN NETWORKS
+1000	Logic PD
+1001	Logic3
+1002	Logitec
+1003	Logitech
+1004	Loglogic
+1005	LogN
+1006	Long Ben
+1007	Longshine
+1008	Longsys
+1009	Loopcomm
+1010	LOYTEC Electronics
+1011	LSR
+1012	Lucent
+1013	Lucent Technologies
+1014	Luma
+1015	Lumens
+1016	Luxon
+1017	Luxul
+1018	LyconSys
+1019	M
+1020	M4
+1021	MachSpeed
+1022	Macromate
+1023	Macromedia
+1024	MacSense
+1025	MacWireless
+1026	Mad Catz
+1027	Mada
+1028	Magento
+1029	Magic-Pro
+1030	Maginon
+1031	Magnadyne
+1032	Magnavox
+1033	Main
+1034	Mambo
+1035	ManageEngine
+1036	Mandarin
+1037	Manhattan
+1038	Mantis
+1039	Maplin
+1040	Mapower Electronics
+1041	Marconi
+1042	Marvell
+1043	Maxdata
+1044	MaxGate
+1045	Maxim Networking
+1046	Maxon
+1047	McAfee
+1048	MCDATA
+1049	Mecer
+1050	Medialink
+1051	MediaTek
+1052	Mediatrix
+1053	MEDIATRIX 2102
+1054	Medion
+1055	Megastar
+1056	Melco
+2005	Mele
+1057	Memotec
+1058	MENTEC
+1059	Mentor
+1060	Meraki
+1061	Mercury
+2006	Mercusys
+1062	MERIDIAN
+1063	Meross
+1064	Meru Networks
+1065	MeshForce
+1066	Metalink
+1067	Metrobility
+2007	Mi Casa Verde
+1068	Michiel
+1069	Microchip
+1070	Microcom
+1071	Microhard
+1072	Microlink
+1073	Micron
+1074	Micronet
+1075	Micronet LTD
+1076	Micronica
+1077	Micronics
+1078	MICROPLEX
+1079	MicroRouter
+1080	Microsoft
+1081	Mike
+1082	MikroTik
+1083	Milan
+1084	Mimosa
+1085	miniDSP
+1086	Minitar
+1087	Minix
+1088	Minolta
+1089	MINOLTA QMS
+1090	Mintel
+1091	Mist Systems
+1092	MITEL
+1093	MitraStar
+1094	Mitsubishi
+1095	Mitsumi Electric
+1096	Mklencke
+1097	MMC Technology
+1098	Mobily
+1099	mobistel
+1100	Mobotix
+1101	Mocet
+1102	Modecom
+1103	Modou
+1104	MoFi
+1105	MoFi Network
+1106	Mojo Networks
+1107	Monoprice
+2008	Monster
+1108	Monster Digital
+1109	mophie
+1110	Motive
+1111	Motorola
+1112	Motorola Solutions
+1113	Mototech
+1114	movistar
+1115	Moxa
+1116	MP3Mystic
+1117	MQmaker
+1118	MRO
+1119	MRO SOFTWARE
+1120	MRV
+1121	MS-Tech
+1122	MSI
+1123	MST
+1124	MTN
+1125	MTN Hynet
+1126	Multi-Tech
+1127	Multilaser
+1128	Multitech
+1129	MultiTech Systems
+1130	Murata
+1131	Mustek
+1132	Mutare
+1133	MUTARE SOFTWARE
+1134	Muze
+1135	Mvix
+1136	MyMax
+1137	MySQL
+1138	MyTech
+1139	n a
+1140	nabi
+1141	NAG
+1142	NAI
+1143	Nanoteq
+1144	National Datacomm
+1145	NCR
+1146	NEC
+1147	NEC AccessTechnica
+1148	Neoware
+2009	Nest
+1149	Net Zen
+1150	Net-Lynx
+1151	NetApp
+1152	NetBotz
+1153	NetBox Blue
+1154	NetComm
+1155	Netcomm Wireless
+1156	Netcordia
+1157	Netcore
+1158	Netcoretek
+2010	Netduma
+1159	Netgate
+1160	Netgear
+1161	NETGENESIS
+1162	Netis
+1163	NetMaster
+2011	Netool
+1164	Netopia
+1165	NETPORT
+1166	Netronix
+1167	Netscape
+1168	NETSCOUT
+1169	Netscreen
+1170	NETSTAR
+1171	Netsys
+1172	Netvigator
+1173	NetweeN
+1174	Network
+1175	NETWORK APPLIANCE
+1176	NETWORK ASSOCIATES
+1177	Network Everywhere
+1178	NetworkICE
+1179	neufbox
+1180	New Link
+1181	Newbridge
+1182	Newer Technology
+1183	NewMedia-NET
+1184	Nexaira
+1185	NEXBOX
+1186	Nexian
+1187	NEXIOM
+1188	NexLand
+1189	Nexsan
+1190	NeXT
+1191	Next Thing
+1192	Nexx
+1193	NEXX Wireless
+1194	Nexxt Solutions
+1195	NGSec
+1196	NICE
+1197	Nikon
+1198	Niksun
+1199	Nimble
+1200	Nintendo
+1201	Nixdorf
+1202	No Geek Needed
+1203	node
+1204	Noganet
+1205	Nokia
+1206	Nokia Shanghai Bell
+1207	Nokia Siemens
+1208	Nokia-Siemens
+1209	Nortel
+1210	Norton
+1211	NovaTech
+1212	Novatel
+1213	Novatel Wireless
+1214	Novatel-Wireless
+1215	Novell
+1216	NOVUS Automation
+1217	NRG
+1218	NRG OR RICOH
+1219	NSI
+1220	NTech Wireless Tech
+1221	Nuance
+1222	Nucom
+1223	NULLSOFT
+1224	Nurit
+1225	Nuvo
+1226	NVIDIA
+1227	NXP
+1228	O2
+1229	OCE
+1230	Octtel
+1231	ODS
+1232	Oki
+1233	Oleg
+1234	Olicom
+1235	Olimex
+1236	OLITEC
+1237	OLITEC (TRENDCHIP)
+1238	OMNITRONIX
+1239	OMRON
+1240	Omron IA
+1241	On Networks
+1242	On Neworks
+1243	On-Networks
+2012	Onelink
+1244	Onion
+1245	ONIXON
+1246	Onkyo
+1247	Ooma
+1248	Open
+1249	Open Mesh
+1250	Open Networks
+1251	Open-Mesh
+1252	Open-Networks
+1253	Open-Xchange
+1254	OPENCONNECT
+1255	Opengear
+1256	Openlink
+1257	OpenMarket
+1258	OpenMediaVault
+1259	OPENWAVE
+1260	OPNsense
+1261	OPPO Digital
+1262	Opticom
+1263	Option
+1264	Optivision
+1265	Optus
+1266	OPURES
+1267	Oracle
+1268	Orange
+1269	Orange Pi
+1270	Orcon
+1271	ORIGO
+1272	OSICOM
+1273	OTC Wireless
+1274	OTE
+1275	OTRS
+1276	Ouman
+1277	OUYA
+1278	OvisLink
+1279	Ozenda
+1280	Ozmo Devices
+1281	Pace
+1282	Pace Plc
+1283	Pace-Plc
+1284	Pach
+1285	Pacific
+1286	PACIFIC MICRO DATA
+1287	Packard
+1288	PacketHop
+1289	pakedge
+1290	Panasonic
+1291	Panda Wireless
+1292	Pandatel
+1293	Paradigm
+1294	Paradyne
+1295	Parallels
+1296	ParkerVision
+1297	Parrot
+1298	Pass and Seymour
+1299	Patriot
+1300	Patriot Memory
+1301	Patton
+1302	PayPal
+1303	PCI
+1304	pcWRT
+1305	Peak
+1306	Pegasus
+1307	Pegatron
+1308	Pendo
+1309	Penril
+1310	PENRIL DATABILITY
+1311	Pentagram
+1312	Pentaoffice
+1313	PENTASAFE
+1314	PePLink
+1315	Pepwave
+1316	Perfect
+1317	PERLE
+1318	PESI
+1319	Phasefale Controls
+1320	Pheenet
+1321	PHICOMM
+1322	Philips
+1323	Phoebe
+1324	Phoenix
+1325	Phoenix Contact
+1326	phorus
+1327	phpLiteAdmin
+1328	PHPReactor
+1329	phpTest
+1330	Pikatel
+2013	Pine64
+1331	Ping Communication
+1332	Ping-Communication
+1333	Pioneer
+1334	PIPS Technology
+1335	Pirelli
+1336	Pivotal
+1337	PIX-LINK
+1338	Planet
+1339	Planex
+1340	PLC Systems
+1341	PLDT
+1342	Plume
+1343	Pluscom
+1344	Plusnet
+1345	PokerTracker
+1346	Pollsafe
+1347	Polycom
+1348	Popcorn Hour
+2014	Poray
+2015	Portal
+1349	PostgreSQL
+1350	Powerchute
+1351	PowerNet
+1352	PQI
+1353	Premiertek
+1354	Prestige
+1355	PRESTIGIO
+1356	Primatel
+1357	Prime
+1358	PrimeBase
+1359	Primus
+1360	Primus Lingo
+1361	PRISMIQ
+1362	Pro-Lite
+1363	PRO-NETS
+1364	Procomp
+1365	ProCurve
+1366	Prodea Systems
+1367	PROLiNK
+1368	Promise
+1369	Promsvyaz
+1370	Pronet
+1371	Pronets
+1372	Pronto Networks
+1373	Prosoft Technology
+1374	Prostar
+1375	Proware
+1376	Proxicast
+1377	Proxiim
+1378	Proxim
+1379	PRTG
+1380	Psion
+1381	Psion Teklogic
+1382	PSION TEKLOGIX
+1383	PTI
+1384	Pyramid
+1385	PYRAMID COMPUTER
+1386	Q-TEC
+1387	Qcom
+1388	QDI
+1389	QNAP
+2016	QPCOM
+1390	QTECH
+1391	Quake
+1392	Qualcomm
+1393	Qualcomm Atheros
+1394	QualiTeam
+1395	Quanta
+1396	Quanta Microsystems
+1397	Quantenna
+1398	Quantex
+1399	Quantum
+1400	Qubs
+1401	Questra
+1402	Quetec
+1403	Quick
+1404	Quick Eagle Networks
+1405	Quickertek
+1406	Quicktel
+1407	Quintum
+1408	QVS Marketing
+1409	Qwest
+1410	Radicom
+1411	Radio
+1412	Radiocom
+1413	RadioLabs
+1414	Radiolinx (ProSoft)
+1415	Radiolocus
+1416	RADWARE
+1417	Raidzone
+1418	Rainbow
+1419	Rainer
+1420	Ralink
+1421	Ramp
+1422	RAMP NETWORKS
+1423	Ramptel
+1424	RapidStream
+1425	Raritan
+1426	RAVPower
+1427	RayTalk
+2017	Razer
+1428	RCA
+1429	Reach
+1430	ReadyNet
+1431	Realtek
+1432	RedHat
+1433	Redline
+2018	Redwave
+1434	Reliance
+1435	Remedy
+1436	Remotec
+2019	Renkchip
+1437	Repotec
+1438	RESEARCH
+1439	Resumix
+1440	Retail Plus
+1441	Rezolt
+1442	RF Monolithics
+1443	RF-Link
+1444	RFNet
+1445	Ricoh
+1446	Riger
+1447	Riger Corporation
+1448	Rivet Networks
+1449	Rizen
+1450	RM
+1451	ROAMABOUT
+2020	Rock Pi
+1452	rock space
+1453	Rocketfish
+1454	Rockwell Automation   Allen-Bradley
+1455	Rogers
+1456	Rokland
+1457	Roku
+1458	Roqos
+1459	Rosewill
+1460	RPF
+1461	RSA
+1462	Ruckus
+1463	Ruckus Wireless
+1464	RuggON
+1465	Runtop
+1466	Rybot
+1467	Sabrent
+1468	Safecom
+1469	Sagem
+1470	Sagemcom
+2021	Sagemcom Broadband SAS
+2022	Salt
+1471	Sambar
+1472	SameSay
+1473	SAMSON GROUP
+1474	Samsung
+1475	Samuel
+2023	SanCloud
+1476	Sanho
+1477	Sanyo
+1478	SAP
+1479	SAPIDO
+1480	Satechi
+1481	Savin
+1482	SBS
+1483	Schimid
+1484	Schmid
+1485	Schneider
+1486	Schneider Electric
+1487	Scientific
+1488	Scientific Atlanta
+1489	Seagate
+1490	Seclore
+2024	Secure Computing
+1491	Securicor3NET
+1492	Securifi
+1493	Securstar
+1494	SeeedStudio
+1495	Semaphore
+1496	Senao
+1497	SendFar
+1498	Sentar Wireless
+1499	Seowonintech
+1500	SerComm
+2025	SerComm, Rostelecom, MGTS
+1501	SercoNet
+1502	Server
+1503	SERVER TECHNOLOGY
+1504	Setplex
+1505	Seyeon
+1506	SFR
+1507	SGI
+1508	Sharp
+1509	Shen Zhen Xin Hua Tian Technology
+1510	Shenzhen Allwins Technology
+1511	Shenzhen Anbansh Technology
+1512	Shenzhen Anbash Technology
+1513	Shenzhen Cepa China
+1514	Shenzhen Changsite
+1515	Shenzhen Compare Electronics
+1516	Shenzhen Gongjin Electronics
+1517	Shenzhen Huapu Digital
+1518	ShenZhen ICC Tech
+1519	Shenzhen Kingnet Technology
+1520	Shenzhen MTC Electronics
+1521	Shenzhen MTN Electronics
+1522	Shenzhen Ogemray Technology
+1523	Shenzhen Oxunda Electronic
+1524	Shenzhen Sungworld Electronics
+1525	Shenzhen Widetell Technology
+1526	Shenzhen Xunman Technology Co
+1527	Shenzhen Yifang Digital Technology
+1528	Shiro Corp
+1529	Shiva
+1530	Shock
+1531	Shuttle
+1532	Siemens
+1533	Siemens AG
+1534	Sierra
+1535	Sierra Wireless
+1536	Sierra-Wireless
+1537	SIGMA
+1538	Sigmatel
+1539	SIIG
+1540	SIIPS
+1541	Silex
+1542	SILEX TECHNOLOGY
+1543	Silicon
+2026	SiliconDust
+1544	Siligence
+1545	Siligence SAS
+2027	SilverCrest
+1546	Simple Mobility
+1547	Simple-Mobility
+2028	SimpliNET
+1548	Sinapsi
+1549	Sipura
+1550	Sitara
+1551	Site
+1552	Sitecom
+1553	Sitecore
+1554	Sitel
+1555	Sky
+1556	SkyLink
+1557	Skyvertex
+1558	Skyworth
+1559	Slyvania
+1560	SMA
+1561	SMA Solar Technology
+1562	SmallWall
+1563	SmartBridges
+1564	Smartenit
+1565	SmartRG
+1566	SMARTSWITCH
+1567	SMC
+1568	Smith
+1569	SmoothWall
+1570	Snap
+1571	SnapGear
+1572	Snom
+1573	Socket
+1574	Software
+1575	Softwarehouse
+1576	SOHO
+1577	SohoSpeed
+1578	SOHOware
+1579	SolarWinds
+2029	SolidRun
+1580	Solution
+1581	SOLUTION 6
+1582	Solwise
+1583	SONIC-X
+1584	SonicWALL
+1585	Soniq
+1586	Sonos
+1587	Sony
+1588	Sony Ericsson
+1589	SOPHIA
+1590	SOPHIA (SCHWEIZ) AG
+2030	Sophos
+1591	Sorenson
+1592	Sorenson VRS
+1593	Sotera Wireless
+1594	Soundwin
+1595	Source
+1596	Sourcefire
+1597	Sovereign
+1598	Soyo
+1599	Sparkcom
+1600	SparkLAN
+1601	Speco
+1602	Spectec
+1603	SPEEDCOM
+1604	SpeedStream
+1605	SpeedUp
+1606	SpeedXess
+1607	SPHAIRON
+1608	Sphirewall
+1609	Spider
+1610	Spike
+1611	Splunk
+1612	Sprint
+1613	Sputnik
+1614	SRCT
+1615	Ssangyoung
+1616	ST Labs
+1617	Stan
+1618	Standard Microsystems
+1619	Starbridge
+1620	StarNet
+1621	StarTech
+1622	StarVedia Technology
+1623	SteadyServ
+1624	Steren
+1625	Sterlite
+1626	Stratitec
+1627	Strix Systems
+1628	Stulz GmbH
+1629	Suga Electronics
+1630	Sumitomo Electric Networks
+1631	Summit
+1632	Sumtech
+1633	Sun
+1634	Sun Microsystems
+1635	Sungale
+2031	SUNMI
+1636	SunRocket
+1637	Super
+1638	SuperMicro
+1639	Surecom
+1640	SuSE
+1641	SweetBeam Networks
+1642	Sweex
+1643	Swisscom
+1644	SWISSVOICE
+1645	Sybase
+1646	Sylvania
+1647	Symantec
+1648	Symbol
+1649	Symphony
+1650	Synet
+1651	Synology
+1652	Syntek
+1653	SYSTEM 32
+1654	Syswan
+1655	szenio
+1656	T-Com
+1657	T-Comfort
+1658	T-Mobile
+1659	T-SS
+1660	TA Technology
+1661	TAC AB
+1662	Tactio
+1663	Tandberg
+1664	TANDBERG DATA
+1665	Tandem
+1666	Tasman
+1667	Tatung
+1668	TCL
+1669	TCP
+1670	TDK
+1671	TDS
+1672	Team
+1673	TEAM XODUS
+1674	Techmade
+1675	Technicolor
+1676	Technicolor / Thomson
+1677	Tecom
+1678	Tecomat
+1679	Tegile
+1680	Tehnoetic
+1681	TekComm
+1682	Tekelec
+1683	Teklogix
+1684	Telappliant
+1685	Telcel
+1686	Telco
+1687	TELCO SYSTEMS
+1688	Teleadapt
+1689	Telebit
+1690	Telecom
+1691	TELEDAT
+1692	Telefonica
+1693	Telekom
+1694	Telelec
+1695	Telenet
+1696	Teletronics
+1697	Telewall
+1698	TeleWell
+1699	Telindus
+1700	Telio
+1701	Telkom
+1702	TELLABS
+1703	Tellus
+1704	Telmex
+1705	Telrad
+1706	Telsec
+1707	Telsey
+1708	Telstra
+1709	Teltonika
+1710	Telus
+1711	Tenda
+1712	Tendia
+1713	Teracom
+1714	Teracom-Limited
+1715	Teradyne
+1716	TERAOKA
+1717	Terayon
+1718	Tesla Motors
+1719	Testing
+2032	TETON camera
+1720	Texas Instruments
+1721	TexBox
+1722	TextPortal
+1723	Thecus
+1724	ThinkFlood
+1725	ThinkPenguin
+1726	Thomson
+1727	Thomson Alcatel
+1728	ThunderSoft
+1729	Tiara
+1730	Tibbo
+1731	TIBCO
+1732	Tilgin
+1733	Tim
+1734	TimeTools
+1735	Tiny
+1736	TiVo
+1737	TL-LINK
+1738	TM
+1739	TMC
+1740	Toko
+1741	TomTom
+1742	Top Global
+1743	Topcom
+1744	Topcon
+1745	TopLayer
+1746	TOPLINK
+1747	TOPSEC
+2033	Torch
+1748	Tornado
+1749	Toshiba
+1750	TOT
+1751	TOTOLINK
+1752	TP-LINK
+1753	Trafficware
+1754	Transcend
+1755	Trapeze Networks
+1756	Trellis
+1757	Trend
+1758	Trend Micro
+1759	Trend-tech
+1760	TrendChip
+1761	TRENDnet
+1762	Tresys
+1763	Tricheer
+1764	Tridium
+1765	Trintech
+1766	Triumph-Adler
+1767	TROY
+1768	TROY Wireless
+1769	Trust
+1770	Tsunami
+1771	Turck
+2034	Turris
+1772	TVMining
+1773	TVT
+1774	TVT SYSTEM
+1775	TW
+1776	TwinMOS
+1777	Twister
+1778	Type3
+1779	U-MEDIA
+1780	U4EA Technologies
+1781	Ubee
+1782	Ubiquiti
+1783	Ubiquiti Networks
+2035	UDOO
+1784	UDP Technology
+1785	Ugoos
+1786	ULTRA
+1787	Umax
+1788	UMAX (MaxGate)
+1789	Unbranded
+1790	Unex
+1791	Uniden
+1792	Unidesk
+2036	UniElec
+1793	Unify
+1794	Unihero
+1795	Unisys
+1796	United
+1797	University
+1798	UNIX
+1799	UPC
+1800	UPVEL
+1801	US ROBOTICS
+1802	US-Robotics
+1803	US21100060
+1804	USI
+1805	USRobotics
+1806	UStec
+1807	UT
+1808	Utstar
+1809	UTStarcom
+1810	UTT
+1811	V-Link
+1812	V-TECH
+2037	Valve
+1813	Vantec
+1814	VASCO
+1815	VBrick
+1816	VDC
+1817	Veenman
+1818	Vendor
+1819	Verbatim
+1820	VERIFONE
+1821	VERILINK
+1822	Veritas
+1823	Verity
+1824	Verizon
+1825	Vertex
+1826	Vestel
+1827	Vextrec
+1828	VIA
+1829	VieNuke
+1830	ViewSonic
+1831	Viking II
+1832	Vikings
+1833	ViKosmo
+1834	Vina
+1835	Virata
+1836	Virgin
+1838	Virgin-Media
+1839	Virtual
+1840	Visa
+1841	VisionNet
+2038	Visonicom
+1842	Visual
+1843	VISUAL NETWORKS
+1844	Vivato
+1845	vividwireless
+1846	Vivint
+1847	Vivo
+1848	Vivotek
+1849	VIZIO
+1850	Vobis
+1851	Vodafone
+1852	VoiceGenie
+1853	VoiceObjects
+1854	Volktek
+1855	Vonage
+1856	Vonets
+1857	Vonger Electronics
+1858	Vood
+1859	VTech
+1860	Vulcan
+1861	VXWORKS
+1862	W-linx
+1863	Wago
+1864	WANADOO
+1865	Wanco
+1866	WANG
+1867	Wanlida
+1868	Wanscam
+1869	WarraCorp
+1870	WashTec
+1871	WatchGuard
+1872	Wateen
+1873	Wavlink
+1874	Wayjet
+1875	Web
+1876	Web Excel
+1877	WebExcel
+1878	Webmin
+1879	Webramp
+1880	Well Communications
+1881	Well Shin
+1882	Wellintech
+1883	Westell
+1884	Westermo
+1885	Western Digital
+1886	Western-Digital
+1887	WeVO
+1888	widemac
+2039	Wifi Wall
+1889	WiFiRanger
+1890	WildPackets
+1891	Wim
+1892	Wink
+1893	Winstars
+1894	Wippies
+1895	Wireless
+1896	Wise
+1897	WISE TIGER
+1898	Wisenet
+1899	Wistron NeWeb
+1900	Withings
+1901	Witpack
+1902	WIZnet
+1903	WondaLink
+1904	Wonderware
+1905	WorldClient
+1906	WRTnode
+1907	WWWBoard
+1908	Wyse
+1909	X-linx
+1910	X-Micro
+1911	XAVi
+1912	XD
+1913	Xenon
+1914	Xerox
+1915	Xiaomi
+1916	ximeta
+1917	XiNCOM
+1918	Xircom
+1919	Xirrus
+1920	Xmedia
+1921	Xperio Labs
+1922	Xterasys
+1923	Xtremeit
+2040	xunlei
+1924	Xylan
+1925	Xyplex
+1926	Xzeres
+1927	Y-cam
+1928	Y-cam Solutions
+1929	Yahoo
+1930	Yakumo
+1931	Yamaha
+1932	Yokogawa
+1933	Youhua
+1934	Yunlink
+1935	Yuxin
+1936	Z-Com
+1937	Zavio
+1938	ZBT
+1939	ZCOM
+1940	ZEBRA
+1941	Zenith
+1942	Zeos
+1943	Zero One Tech
+1944	Zero One Technology
+1945	Zeus
+1946	Zhone
+1947	ZIDA Technologies
+1948	ZIDOO
+1949	Zinwell
+1950	ZIO
+1951	Zioncom
+1952	Zoe Medical
+1953	ZoneAlarm
+1954	Zonet
+1955	Zoom
+1956	Zowee
+1957	ZTE
+1958	ZuniDigital
+1959	ZXDSL
+1960	ZyDAS
+1961	ZyXEL

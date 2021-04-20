@@ -1,0 +1,9 @@
+# Instructions
+
+Run scrape.py to generate an output file. It takes a long time to run.
+
+Running massage.py will convert the data into the appropriate format. There may be parsing errros if values have changed substatially since this was run on Apr 19 2021.
+
+data.js contains a js encoded list of objects scraped from this site
+
+Copy this manually to the data directory for now. This is the wrong way to do it but in lieu of a database for now, it will work.
