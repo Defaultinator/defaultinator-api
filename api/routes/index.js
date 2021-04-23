@@ -1,4 +1,5 @@
 const express = require('express');
+const {getVendorsByCredential} = require("../queries/queries");
 const router = express.Router();
 
 const { CPE2_3_URI } = require('cpe');
@@ -45,6 +46,13 @@ router.post('/generateCpeStringFromAttributes', (req, res, next) => {
   let cpeString = CPE2_3_URI.generateCpeStringFromAttributes(req.body);
 
   res.send({cpe: cpeString});
+
+});
+
+router.post('/getVendorsByCredential', (req, res, next) => {
+  const { username, password } = req.body;
+
+  res.send(getVendorsByCredential(req.body));
 
 });
 

@@ -1,10 +1,14 @@
 const createError = require('http-errors');
 const express = require('express');
+const cors = require('cors');
 const logger = require('morgan');
 
 const myRouter = require('./routes/index');
 
 const app = express();
+
+app.use(cors());
+app.options('*', cors());
 
 app.use(logger('dev'));
 app.use(express.json());
