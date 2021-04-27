@@ -2,10 +2,44 @@ const createError = require('http-errors');
 const express = require('express');
 const cors = require('cors');
 const logger = require('morgan');
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
 
 const myRouter = require('./routes/index');
 
 const app = express();
+
+// Swagger configuration
+const options = {
+  definition: {
+    swagger: "2.0",
+    info: {
+      title: "Defaultinator API",
+      version: "0.1",
+      description:
+        "This API is a lookup service for default credentials.",
+      contact: {
+        name: "Rapid7",
+        url: "https://rapid7.com",
+        email: "cbarnard@rapid7.cm",
+      },
+    },
+    servers: [
+      {
+        url: "http://localhost:3000/",
+      },
+    ],
+  },
+  apis: ["./routes/index.js"],
+};
+
+const specs = swaggerJsdoc(options);
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs)
+);
 
 app.use(cors());
 app.options('*', cors());
