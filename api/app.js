@@ -4,10 +4,19 @@ const cors = require('cors');
 const logger = require('morgan');
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const mongoose = require('mongoose');
 
-const myRouter = require('./routes/index');
+const { DATABASE_URI } = require('./config/constants');
+
+const myRouter = require('./routes/credentials');
 
 const app = express();
+mongoose.connect(DATABASE_URI, { useNewUrlParser: true , useUnifiedTopology: true})
+  .then(() => {
+    console.log('connected to mongodb');
+  });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // Swagger configuration
 const options = {
@@ -29,8 +38,9 @@ const options = {
         url: "http://localhost:3000/",
       },
     ],
+    components: {},
   },
-  apis: ["./routes/index.js"],
+  apis: ["./routes/credentials.js"],
 };
 
 const specs = swaggerJsdoc(options);
@@ -48,7 +58,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/', myRouter);
+app.use('/credentials', myRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
