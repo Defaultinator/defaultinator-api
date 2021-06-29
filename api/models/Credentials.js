@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongoosePaginate = require('mongoose-paginate');
 
 const { CpeSchema } = require('./CPE');
 
@@ -7,6 +8,8 @@ const credentialSchema = mongoose.Schema({
   username: String,
   password: String,
 });
+
+credentialSchema.plugin(mongoosePaginate);
 
 const Credential = mongoose.model("Credential", credentialSchema);
 

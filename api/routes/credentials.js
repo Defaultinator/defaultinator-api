@@ -59,14 +59,18 @@ const router = express.Router();
  *         cpe:
  *           $ref: '#/components/schemas/CPE'
  *
- *     CredentialList:
+ *     CredentialsList:
  *       type: object
  *       properties:
- *         next:
- *           type: string
- *         prev:
- *           type: string
- *         credentials:
+ *         total:
+ *           type: integer
+ *         limit:
+ *           type: integer
+ *         page:
+ *           type: integer
+ *         pages:
+ *           type: integer
+ *         docs:
  *           type: array
  *           items:
  *             $ref: '#/components/schemas/Credential'
@@ -262,22 +266,19 @@ router.delete('/:id', (req, res, next) => {
  *         schema:
  *           type: array
  *           items:
- *             $ref: '#/components/schemas/CredentialList'
+ *             $ref: '#/components/schemas/CredentialsList'
  */
 router.post('/search', (req, res, next) => {
+  const RESULTS_PER_PAGE = 10;
   const { cpe } = req.body;
+  const { page = 1 } = req.query;
   const {prefix, ...searchCpe} = new CPE2_3_URI(cpe).attrs;
 
   // TODO: Find/sort/limit/paginate
   // TODO: This is not following the schema
   // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
-  Credential.find(flattenObject({cpe: searchCpe}), (err, docs) => {
-    if(!err) {
-      res.send(docs);
-    } else {
-      // TODO: Not error handling right
-      res.send(err);
-    }
+  Credential.paginate(flattenObject({cpe: searchCpe}), {page: page, limit: RESULTS_PER_PAGE}, (err, docs) => {
+    res.send(docs);
   });
 
 });
