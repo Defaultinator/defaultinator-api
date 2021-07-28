@@ -9,6 +9,7 @@
     "coverage": "nyc mocha"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "cors": "^2.8.5",
     "cpe": "git+https://github.com/cbarnard-r7/cpe-js.git",
     "dotenv": "^8.2.0",

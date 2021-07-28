@@ -8,7 +8,8 @@ const mongoose = require('mongoose');
 
 const { DATABASE_URI } = require('./config/constants');
 
-const myRouter = require('./routes/credentials');
+const credentialRouter = require('./routes/credentials');
+const dictionaryRouter = require('./routes/dictionary');
 
 const app = express();
 mongoose.connect(DATABASE_URI, { useNewUrlParser: true , useUnifiedTopology: true})
@@ -40,7 +41,10 @@ const options = {
     ],
     components: {},
   },
-  apis: ["./routes/credentials.js"],
+  apis: [
+    "./routes/*.js",
+    "./models/*.js",
+  ],
 };
 
 const specs = swaggerJsdoc(options);
@@ -58,7 +62,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use('/credentials', myRouter);
+app.use('/credentials', credentialRouter);
+app.use('/dictionary', dictionaryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

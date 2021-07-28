@@ -1,81 +1,70 @@
 const express = require('express');
-const { CPE2_3_URI } = require('cpe');
-const { flattenObject } = require('../util/flatten');
+const {CPE2_3_URI} = require('cpe');
+const {flattenObject} = require('../util/flatten');
 
-const { Credential } = require('../models/Credentials');
+const {Credential} = require('../models/Credentials');
 
 const router = express.Router();
 
-/**
- * @swagger
- * components:
- *   schemas:
- *     CPE:
- *       type: object
- *       properties:
- *         part:
- *           type: string
- *           example: a
- *         vendor:
- *           type: string
- *           example: linksys
- *         product:
- *           type: string
- *           example: wrt53g
- *         version:
- *           type: string
- *           example: ANY
- *         language:
- *           type: string
- *           example: ANY
- *         update:
- *           type: string
- *           example: ANY
- *         edition:
- *           type:  string
- *           example: ANY
- *         protocol:
- *           type: string
- *           example: ANY
- *         references:
- *           type: array
- *           items:
- *             type: string
- *           example:
- *             - https://www.linksys.com
- *             - https://www.example.com
- *
- *     Credential:
- *       type: object
- *       properties:
- *         username:
- *           type: string
- *           description: The default username
- *           example: admin
- *         password:
- *           type: string
- *           description: The default password
- *           example: admin
- *         cpe:
- *           $ref: '#/components/schemas/CPE'
- *
- *     CredentialsList:
- *       type: object
- *       properties:
- *         total:
- *           type: integer
- *         limit:
- *           type: integer
- *         page:
- *           type: integer
- *         pages:
- *           type: integer
- *         docs:
- *           type: array
- *           items:
- *             $ref: '#/components/schemas/Credential'
- *
- */
+// TODO: Swagger
+router.get('/typeahead', (req, res, next) => {
+  const {
+    field,
+    prefix = '',
+    count = 5,
+    part,
+    vendor,
+    product,
+    version,
+    update,
+    language,
+    edition,
+  } = req.query;
+
+  if(!field) res.status(500).send({"message": "The \'field\' parameter is required."});
+
+  const attrs = {
+    ...(part && {part: part}),
+    ...(vendor && {vendor: vendor}),
+    ...(product && {product: product}),
+    ...(version && {version: version}),
+    ...(update && {update: update}),
+    ...(language && {language: language}),
+    ...(edition && {edition: edition}),
+  };
+
+  const matches = {
+    $match: flattenObject({cpe: attrs}),
+  };
+
+  Credential.aggregate([
+    {
+      $facet: {
+        "results": [
+          matches,
+          {
+            $group: {
+              _id: `$cpe.${field}`,
+              count: {$sum: 1}
+            }
+          },
+          {
+            $match: {
+              _id: {$regex: new RegExp('^' + prefix, 'i')}
+            },
+          },
+          {
+            $sort: {
+              count: -1
+            }
+          }
+        ]
+      }
+    }
+  ])
+    .then((docs) => res.send(docs[0]['results'].slice(0, count)))
+    .catch((err) => res.status(500).send({"message": err}));
+});
 
 /**
  * @swagger
@@ -99,8 +88,8 @@ const router = express.Router();
  *               $ref: '#/components/schemas/Credential'
  */
 router.get('/:id', async (req, res, next) => {
-  const { id = '' } = req.params;
-  res.send(await Credential.findOne({ _id: id}));
+  const {id = ''} = req.params;
+  res.send(await Credential.findOne({_id: id}));
 });
 
 /**
@@ -119,8 +108,14 @@ router.get('/:id', async (req, res, next) => {
  *               items:
  *                 $ref: '#/components/schemas/Credential'
  */
-router.get('/', async (req, res, next) => {
-  res.send(await Credential.find());
+router.get('/', (req, res, next) => {
+  const RESULTS_PER_PAGE = 10;
+  const {page = 1} = req.query;
+
+  Credential.paginate({}, {page: page, limit: RESULTS_PER_PAGE}, (err, docs) => {
+    res.send(docs);
+  });
+  //res.send(await Credential.find());
 });
 
 /**
@@ -147,12 +142,8 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   // TODO: More validation/testing
   const credential = new Credential({
-    username: req.body.username,
-    password: req.body.password,
-    cpe: req.body.cpe,
+    ...req.body
   });
-
-  console.log(credential);
 
   await credential.save();
   res.send(credential);
@@ -185,26 +176,27 @@ router.post('/', async (req, res, next) => {
  *               $ref: '#/components/schemas/Credential'
  */
 router.put('/:id', (req, res, next) => {
-  // const { id } = req.params;
-  // const updates = req.body;
+  const {id} = req.params;
+  const updates = req.body;
 
-  return res.status(404).send('Not implemented');
-  // Credential.findByIdAndUpdate(
-  //   id,
-  //   updates,
-  //   {new: true}
-  // ).then(
-  //   (err, cred) => {
-  //     console.log(err, cred);
-  //   }
-  // );
+  //return res.status(404).send('Not implemented');
+  Credential.findByIdAndUpdate(
+    id,
+    flattenObject(updates),
+    {new: true}
+  ).then((data) => {
+      res.send(data);
+    }
+  ).catch((err) => {
+    res.status(500).send({"message": "Failed to update record"});
+  });
 
   //let credential = await Credential.findOne({ _id: id});
 
   //console.log(credential, credentials, cpe);
   //console.log({...credential});
 
-  // res.send(`OK ${id}`);
+  res.send(`OK ${id}`);
 
 });
 
@@ -233,7 +225,7 @@ router.put('/:id', (req, res, next) => {
  *                   example: 5
  */
 router.delete('/:id', (req, res, next) => {
-  const { id } = req.params;
+  const {id} = req.params;
 
   Credential.deleteOne({_id: id})
     .then(() => {
@@ -270,8 +262,8 @@ router.delete('/:id', (req, res, next) => {
  */
 router.post('/search', (req, res, next) => {
   const RESULTS_PER_PAGE = 10;
-  const { cpe } = req.body;
-  const { page = 1 } = req.query;
+  const {cpe} = req.body;
+  const {page = 1} = req.query;
   const {prefix, ...searchCpe} = new CPE2_3_URI(cpe).attrs;
 
   // TODO: Find/sort/limit/paginate
