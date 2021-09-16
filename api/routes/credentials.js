@@ -6,6 +6,10 @@ const {Credential} = require('../models/Credentials');
 
 const router = express.Router();
 
+// TODO: Move to config/constants
+const RESULTS_PER_PAGE = 10;
+
+
 // TODO: Swagger
 router.get('/typeahead', (req, res, next) => {
   const {
@@ -109,13 +113,13 @@ router.get('/:id', async (req, res, next) => {
  *                 $ref: '#/components/schemas/Credential'
  */
 router.get('/', (req, res, next) => {
-  const RESULTS_PER_PAGE = 10;
-  const {page = 1} = req.query;
+  const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
 
-  Credential.paginate({}, {page: page, limit: RESULTS_PER_PAGE}, (err, docs) => {
+  console.log(page, limit);
+
+  Credential.paginate({}, {page: page, limit: parseInt(limit)}, (err, docs) => {
     res.send(docs);
   });
-  //res.send(await Credential.find());
 });
 
 /**
@@ -261,15 +265,18 @@ router.delete('/:id', (req, res, next) => {
  *             $ref: '#/components/schemas/CredentialsList'
  */
 router.post('/search', (req, res, next) => {
-  const RESULTS_PER_PAGE = 10;
   const {cpe} = req.body;
-  const {page = 1} = req.query;
+  const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
+
+  console.log(cpe, page, limit);
+
   const {prefix, ...searchCpe} = new CPE2_3_URI(cpe).attrs;
+
 
   // TODO: Find/sort/limit/paginate
   // TODO: This is not following the schema
   // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
-  Credential.paginate(flattenObject({cpe: searchCpe}), {page: page, limit: RESULTS_PER_PAGE}, (err, docs) => {
+  Credential.paginate(flattenObject({cpe: searchCpe}), {page: page, limit: limit}, (err, docs) => {
     res.send(docs);
   });
 
