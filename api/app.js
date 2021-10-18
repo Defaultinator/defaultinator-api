@@ -10,6 +10,7 @@ const { DATABASE_URI } = require('./config/constants');
 
 const credentialRouter = require('./routes/credentials');
 const dictionaryRouter = require('./routes/dictionary');
+const apikeyRouter = require('./routes/apikeys');
 
 const app = express();
 mongoose.connect(DATABASE_URI, { useNewUrlParser: true , useUnifiedTopology: true})
@@ -64,6 +65,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/credentials', credentialRouter);
 app.use('/dictionary', dictionaryRouter);
+app.use('/apikeys', apikeyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

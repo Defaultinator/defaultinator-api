@@ -9,7 +9,6 @@ const router = express.Router();
 // TODO: Move to config/constants
 const RESULTS_PER_PAGE = 10;
 
-
 // TODO: Swagger
 router.get('/typeahead', (req, res, next) => {
   const {
@@ -68,6 +67,67 @@ router.get('/typeahead', (req, res, next) => {
   ])
     .then((docs) => res.send(docs[0]['results'].slice(0, count)))
     .catch((err) => res.status(500).send({"message": err}));
+});
+
+/**
+ * @swagger
+ * /credentials/search:
+ *   post:
+ *     description: Returns a list of all known credentials that match a given CPE string.
+ *     summary: Get a list of credentials by CPE.
+ *     parameters:
+ *     - name: "body"
+ *       in: "body"
+ *       description: "The CPE string to query."
+ *       required: true
+ *       schema:
+ *         type: object
+ *         properties:
+ *           cpe:
+ *             type: "string"
+ *         example:
+ *           cpe: "cpe:/a:linksys:wrt54g"
+ *     responses:
+ *       200:
+ *         description: Returns a list of credentials that match the provided CPE string.
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/CredentialsList'
+ */
+ router.get('/search', (req, res, next) => {
+  const {
+    page = 1, 
+    limit = RESULTS_PER_PAGE,
+    part,
+    vendor,
+    product,
+    version,
+    username,
+    password,
+  } = req.query;
+
+  console.log(req.query);
+  
+  const searchCpe = {
+    ...(part && {part, part}),
+    ...(vendor && {vendor, vendor}),
+    ...(product && {product, product}),
+    ...(version && {version, version}),
+  };
+
+  const queryFields = {
+    cpe: searchCpe,
+    ...(username && {username: username}),
+    ...(password && {password: password}),
+  };
+
+  // TODO: This is not following the schema
+  // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
+  Credential.paginate(flattenObject(queryFields), {page: page, limit: limit}, (err, docs) => {
+    res.send(docs);
+  });
+
 });
 
 /**
@@ -154,7 +214,7 @@ router.post('/', async (req, res, next) => {
 });
 
 /**
- * @swaggers
+ * @swagger
  * /credentials/{id}:
  *   put:
  *     summary: Update a credential
@@ -235,50 +295,6 @@ router.delete('/:id', (req, res, next) => {
     .then(() => {
       res.send({message: "Success"});
     });
-
-});
-
-/**
- * @swagger
- * /credentials/search:
- *   post:
- *     description: Returns a list of all known credentials that match a given CPE string.
- *     summary: Get a list of credentials by CPE.
- *     parameters:
- *     - name: "body"
- *       in: "body"
- *       description: "The CPE string to query."
- *       required: true
- *       schema:
- *         type: object
- *         properties:
- *           cpe:
- *             type: "string"
- *         example:
- *           cpe: "cpe:/a:linksys:wrt54g"
- *     responses:
- *       200:
- *         description: Returns a list of credentials that match the provided CPE string.
- *         schema:
- *           type: array
- *           items:
- *             $ref: '#/components/schemas/CredentialsList'
- */
-router.post('/search', (req, res, next) => {
-  const {cpe} = req.body;
-  const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
-
-  console.log(cpe, page, limit);
-
-  const {prefix, ...searchCpe} = new CPE2_3_URI(cpe).attrs;
-
-
-  // TODO: Find/sort/limit/paginate
-  // TODO: This is not following the schema
-  // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
-  Credential.paginate(flattenObject({cpe: searchCpe}), {page: page, limit: limit}, (err, docs) => {
-    res.send(docs);
-  });
 
 });
 
