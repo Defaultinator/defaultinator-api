@@ -48,12 +48,16 @@ const credentialSchema = mongoose.Schema({
  *       properties:
  *         total:
  *           type: integer
+ *           example: 1
  *         limit:
  *           type: integer
+ *           example: 10
  *         page:
  *           type: integer
+ *           example: 1
  *         pages:
  *           type: integer
+ *           example: 1
  *         docs:
  *           type: array
  *           items:

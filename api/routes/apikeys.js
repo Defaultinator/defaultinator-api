@@ -1,5 +1,8 @@
 const express = require('express');
 const { v4 : uuidv4 } = require('uuid');
+const {
+  requiresAdmin,
+} = require('../middleware/auth');
 
 const {
   APIKey,
@@ -17,6 +20,10 @@ const RESULTS_PER_PAGE = 20;
  *   get:
  *     summary: Get data for an API Key
  *     description: Returns am API Key by ID
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -27,12 +34,14 @@ const RESULTS_PER_PAGE = 20;
  *     responses:
  *       200:
  *         description: Returns a single APIKey object.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/APIKey'
+ *         schema:
+ *           $ref: '#/components/schemas/APIKey'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requiresAdmin, async (req, res, next) => {
   const {id = ''} = req.params;
   res.send(await APIKey.findOne({_id: id}));
 });
@@ -42,18 +51,24 @@ router.get('/:id', async (req, res, next) => {
  * /apikeys:
  *   get:
  *     summary: Get a list of all API Keys
- *     description: Returns all API Keys stored in the database
+ *     description: Returns all API Keys stored in the database. Requires the user to be Admin.
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
  *     responses:
  *       200:
  *         description: Returns a list of APIKey objects.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/APIKey'
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/APIKey'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.get('/', (req, res, next) => {
+router.get('/', requiresAdmin, (req, res, next) => {
   const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
 
   APIKey.paginate({}, {page: page, limit: parseInt(limit)}, (err, docs) => {
@@ -65,8 +80,12 @@ router.get('/', (req, res, next) => {
  * @swagger
  * /apikeys:
  *   post:
- *     summary: Save a new API Key
+ *     summary: Create a new API Key
  *     description: Returns a newly created APIKey
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: body
  *       in: body
@@ -77,12 +96,14 @@ router.get('/', (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the credential object that was saved.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Credential'
+ *         schema:
+ *           $ref: '#/components/schemas/Credential'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.post('/', async (req, res, next) => {
+router.post('/', requiresAdmin, async (req, res, next) => {
   // TODO: Check to see if the key is already in use.
   const apiKey = new APIKey({
     apiKey: uuidv4(),
@@ -99,6 +120,10 @@ router.post('/', async (req, res, next) => {
  *   put:
  *     summary: Update an APIKey
  *     description: Returns an APIKey by ID
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: id
  *       in: path
@@ -114,34 +139,14 @@ router.post('/', async (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the APIKey object that was updated.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/APIKey'
+ *         schema:
+ *           $ref: '#/components/schemas/APIKey'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-// router.put('/:id', (req, res, next) => {
-//   const {id} = req.params;
-//   const updates = req.body;
-
-//   //return res.status(404).send('Not implemented');
-//   Credential.findByIdAndUpdate(
-//     id,
-//     flattenObject(updates),
-//     {new: true}
-//   ).then((data) => {
-//       res.send(data);
-//     }
-//   ).catch((err) => {
-//     res.status(500).send({"message": "Failed to update record"});
-//   });
-
-//   //let credential = await Credential.findOne({ _id: id});
-
-//   //console.log(credential, credentials, cpe);
-//   //console.log({...credential});
-
-//   res.send(`OK ${id}`);
-
+// router.put('/:id', requiresAdmin, (req, res, next) => {
 // });
 
 /**
@@ -150,6 +155,10 @@ router.post('/', async (req, res, next) => {
  *   delete:
  *     summary: Delete an API Key
  *     description: Deletes an API Key
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: id
  *       in: path
@@ -158,17 +167,19 @@ router.post('/', async (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the ID of the key that was deleted
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                   required: true
- *                   example: 5
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: string
+ *               required: true
+ *               example: 5
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', requiresAdmin, (req, res, next) => {
   const {id} = req.params;
 
   APIKey.deleteOne({_id: id})

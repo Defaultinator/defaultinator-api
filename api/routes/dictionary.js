@@ -4,6 +4,11 @@ const {flattenObject} = require('../util/flatten');
 
 const {Dictionary} = require('../models/Dictionary');
 
+const {
+  requiresAdmin,
+  requiresKey,
+} = require('../middleware/auth');
+
 const router = express.Router();
 
 /**
@@ -12,6 +17,10 @@ const router = express.Router();
  *   get:
  *     summary: Typeahead suggestions
  *     description: Returns suggested CPE field values based on query parameters
+ *     tags:
+ *       - Dictionary
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *       - in: path
  *         name: field
@@ -73,12 +82,14 @@ const router = express.Router();
  *     responses:
  *       200:
  *         description: Returns the credential object that was saved.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Dictionary'
+ *         schema:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Dictionary'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
-router.get('/typeahead', (req, res, next) => {
+router.get('/typeahead', requiresKey, (req, res, next) => {
   const {
     field,
     prefix = '',
@@ -142,7 +153,11 @@ router.get('/typeahead', (req, res, next) => {
  * /dictionary:
  *   post:
  *     summary: Save a new dictionary record
- *     description: Returns a credential by ID
+ *     description: Returns a credential by ID. Requires Admin.
+ *     tags:
+ *       - Dictionary
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: body
  *       in: body
@@ -153,12 +168,14 @@ router.get('/typeahead', (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the credential object that was saved.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Dictionary'
+ *         schema:
+ *           $ref: '#/components/schemas/Dictionary'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.post('/', async (req, res, next) => {
+router.post('/', requiresAdmin, async (req, res, next) => {
   // TODO: More validation/testing
   const dictionary = new Dictionary({
     ...req.body
@@ -173,7 +190,11 @@ router.post('/', async (req, res, next) => {
  * /dictionary/{id}:
  *   delete:
  *     summary: Delete a dictionary record
- *     description: Deletes a dictionary record
+ *     description: Deletes a dictionary record. Requires Admin.
+ *     tags:
+ *       - Dictionary
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: id
  *       in: path
@@ -182,17 +203,19 @@ router.post('/', async (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the ID of the dictionary record that was deleted
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                   required: true
- *                   example: 5
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: string
+ *               required: true
+ *               example: 5
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', requiresAdmin, (req, res, next) => {
   const {id} = req.params;
 
   Dictionary.deleteOne({_id: id})

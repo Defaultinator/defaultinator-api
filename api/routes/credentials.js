@@ -4,6 +4,11 @@ const {flattenObject} = require('../util/flatten');
 
 const {Credential} = require('../models/Credentials');
 
+const {
+  requiresAdmin,
+  requiresKey,
+} = require('../middleware/auth');
+
 const router = express.Router();
 
 // TODO: Move to config/constants
@@ -75,6 +80,10 @@ router.get('/typeahead', (req, res, next) => {
  *   post:
  *     description: Returns a list of all known credentials that match a given CPE string.
  *     summary: Get a list of credentials by CPE.
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: "body"
  *       in: "body"
@@ -94,8 +103,10 @@ router.get('/typeahead', (req, res, next) => {
  *           type: array
  *           items:
  *             $ref: '#/components/schemas/CredentialsList'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
- router.get('/search', (req, res, next) => {
+ router.get('/search', requiresKey, (req, res, next) => {
   const {
     page = 1, 
     limit = RESULTS_PER_PAGE,
@@ -106,9 +117,8 @@ router.get('/typeahead', (req, res, next) => {
     username,
     password,
   } = req.query;
-
-  console.log(req.query);
   
+  // TODO: Need to revisit this. I don't think this matches the Swagger docs?
   const searchCpe = {
     ...(part && {part, part}),
     ...(vendor && {vendor, vendor}),
@@ -136,6 +146,10 @@ router.get('/typeahead', (req, res, next) => {
  *   get:
  *     summary: Get a credential by ID
  *     description: Returns a credential by ID
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -146,12 +160,12 @@ router.get('/typeahead', (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns a single credential object.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Credential'
+ *         schema:
+ *           $ref: '#/components/schemas/Credential'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', requiresKey, async (req, res, next) => {
   const {id = ''} = req.params;
   res.send(await Credential.findOne({_id: id}));
 });
@@ -162,17 +176,19 @@ router.get('/:id', async (req, res, next) => {
  *   get:
  *     summary: Get a list of all credentials
  *     description: Returns all credentials stored in the database
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
  *     responses:
  *       200:
  *         description: Returns a list of credential objects.
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Credential'
+ *         schema:
+ *           $ref: '#/components/schemas/CredentialsList'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
-router.get('/', (req, res, next) => {
+router.get('/', requiresKey, (req, res, next) => {
   const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
 
   console.log(page, limit);
@@ -188,6 +204,10 @@ router.get('/', (req, res, next) => {
  *   post:
  *     summary: Save a new credential
  *     description: Returns a credential by ID
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: body
  *       in: body
@@ -198,12 +218,12 @@ router.get('/', (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the credential object that was saved.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Credential'
+ *         schema:
+ *           $ref: '#/components/schemas/Credential'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
  */
-router.post('/', async (req, res, next) => {
+router.post('/', requiresKey, async (req, res, next) => {
   // TODO: More validation/testing
   const credential = new Credential({
     ...req.body
@@ -218,7 +238,11 @@ router.post('/', async (req, res, next) => {
  * /credentials/{id}:
  *   put:
  *     summary: Update a credential
- *     description: Returns a credential by ID
+ *     description: Returns a credential by ID. Requires Admin.
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: id
  *       in: path
@@ -234,12 +258,14 @@ router.post('/', async (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the credential object that was updated.
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Credential'
+ *         schema:
+ *           $ref: '#/components/schemas/Credential'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.put('/:id', (req, res, next) => {
+router.put('/:id', requiresAdmin, (req, res, next) => {
   const {id} = req.params;
   const updates = req.body;
 
@@ -255,11 +281,6 @@ router.put('/:id', (req, res, next) => {
     res.status(500).send({"message": "Failed to update record"});
   });
 
-  //let credential = await Credential.findOne({ _id: id});
-
-  //console.log(credential, credentials, cpe);
-  //console.log({...credential});
-
   res.send(`OK ${id}`);
 
 });
@@ -269,7 +290,11 @@ router.put('/:id', (req, res, next) => {
  * /credentials/{id}:
  *   delete:
  *     summary: Delete a credential
- *     description: Deletes a credential
+ *     description: Deletes a credential. Requires Admin.
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
  *     parameters:
  *     - name: id
  *       in: path
@@ -278,22 +303,24 @@ router.put('/:id', (req, res, next) => {
  *     responses:
  *       200:
  *         description: Returns the ID of the credential that was deleted
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                   required: true
- *                   example: 5
+ *         schema:
+ *           type: object
+ *           properties:
+ *             id:
+ *               type: string
+ *               required: true
+ *               example: 5
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
  */
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', requiresAdmin, (req, res, next) => {
   const {id} = req.params;
 
   Credential.deleteOne({_id: id})
     .then(() => {
-      res.send({message: "Success"});
+      res.send({id: id});
     });
 
 });

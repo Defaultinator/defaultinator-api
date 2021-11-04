@@ -45,6 +45,7 @@ const options = {
   apis: [
     "./routes/*.js",
     "./models/*.js",
+    "./middleware/*.js",
   ],
 };
 
