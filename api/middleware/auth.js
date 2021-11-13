@@ -4,7 +4,6 @@ const {
 
 const AUTH_HEADER = 'x-api-key';
 
-
 /**
  * @swagger
  * securityDefinitions:
@@ -40,13 +39,11 @@ const requiresKey = async (req, res, next) => {
         if (key) {
           next();
         } else {
-          //res.status(401).send({message: "Invalid API key provided."});
-          next();
+          res.status(401).send({message: "Invalid API key provided."});
         }
       });
   } else {
-    //res.status(401).send({message: "No API key provided."});
-    next();
+    res.status(401).send({message: "No API key provided."});
   }
 };
 
@@ -60,21 +57,19 @@ const requiresAdmin = async (req, res, next) => {
           if(key.isAdmin) {
             next();
           } else {
-            //res.status(403).send({message: "User is not an Admin."});
-            next();
+            res.status(403).send({message: "User is not an Admin."});
           }
         } else {
-          //res.status(401).send({message: "Invalid API key provided."});
-          next();
+          res.status(401).send({message: "Invalid API key provided."});
         }
       });
   } else {
-    //res.status(401).send({message: "No API key provided."});
-    next();
+    res.status(401).send({message: "No API key provided."});
   }
 };
 
 module.exports = {
   requiresAdmin,
   requiresKey,
+  AUTH_HEADER,
 }

@@ -1,7 +1,9 @@
 const express = require('express');
 const { v4 : uuidv4 } = require('uuid');
 const {
-  requiresAdmin,
+  requiresAdmin, 
+  requiresKey,
+  AUTH_HEADER,
 } = require('../middleware/auth');
 
 const {
@@ -11,15 +13,50 @@ const {
 
 const router = express.Router();
 
-// TODO: Move to config/constants
+// TODO: Move to config/constants?
 const RESULTS_PER_PAGE = 20;
+
+/**
+ * @swagger
+ * /apikeys/keyinfo:
+ *   get:
+ *     summary: Get metadata for an API Key
+ *     description: Returns metadata about a given API key, specifically if the user is an admin.
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: key
+ *         required: true
+ *         description: The API key for which to get metadata about.
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Returns a single APIKey object.
+ *         schema:
+ *           $ref: '#/components/schemas/APIKey'
+*       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ */
+router.get('/keyinfo', requiresKey, async (req, res, next) => {
+  const { headers } = req;
+
+  if(AUTH_HEADER in headers) {
+    res.send(await APIKey.findOne({apiKey: headers[AUTH_HEADER]}));
+  }
+  res.status(500).send({message: "Unknown error."});
+
+});
 
 /**
  * @swagger
  * /apikeys/{id}:
  *   get:
  *     summary: Get data for an API Key
- *     description: Returns am API Key by ID
+ *     description: Returns an API Key by ID
  *     tags:
  *       - API Keys
  *     security:
