@@ -134,7 +134,7 @@ router.get('/typeahead', (req, res, next) => {
 
   // TODO: This is not following the schema
   // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
-  Credential.paginate(flattenObject(queryFields), {page: page, limit: limit}, (err, docs) => {
+  Credential.paginate(flattenObject(queryFields), {page: page, limit: parseInt(limit)}, (err, docs) => {
     res.send(docs);
   });
 
