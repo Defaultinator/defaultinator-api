@@ -66,11 +66,17 @@ const initializeAdminKey = async () => {
 router.get('/keyinfo', requiresKey, async (req, res, next) => {
   const { headers } = req;
 
-  if(AUTH_HEADER in headers) {
-    res.send(await APIKey.findOne({apiKey: headers[AUTH_HEADER]}));
+  try {
+    if('x-api-key' in headers) {
+      res.send(await APIKey.findOne({apiKey: headers[AUTH_HEADER]}));
+    } else {
+      res.status(500).send({message: "X-API-KEY not present in headers"});
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({message: "Unknown error."});
   }
-  res.status(500).send({message: "Unknown error."});
-
+  
 });
 
 /**
