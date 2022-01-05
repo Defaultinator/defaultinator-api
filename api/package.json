@@ -22,7 +22,7 @@
     "sqlite3": "^5.0.2",
     "swagger-jsdoc": "^6.0.0",
     "swagger-ui-express": "^4.1.6",
-    "uuid4": "^2.0.2"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "mocha": "^8.3.2",
