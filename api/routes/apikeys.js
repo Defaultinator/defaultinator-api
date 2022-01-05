@@ -11,10 +11,32 @@ const {
   APIKeySubmissionSchema,
 } = require('../models/APIKeys');
 
+const { ROOT_KEY } = require('../config/constants');
+
 const router = express.Router();
 
 // TODO: Move to config/constants?
 const RESULTS_PER_PAGE = 20;
+
+// Create the root admin key if it doesn't exist already
+const initializeAdminKey = async () => {
+  const rootKey = await APIKey.findOne({isRootKey: true});
+
+  // If the root API key doesn't exist, make it
+  if(!rootKey) {
+    console.log(`No root key found! Generating one for you.`);
+    const apiKey = new APIKey({
+      apiKey: ROOT_KEY || uuidv4(),
+      email: 'ROOT KEY',
+      notes: 'This key was automatically generated during initialization.',
+      isAdmin: true,
+      isRootKey: true,
+    });
+  
+    await apiKey.save();
+  }
+  console.log(`Root key: ${(rootKey?.apiKey || apiKey?.apiKey)}`);
+};
 
 /**
  * @swagger
@@ -225,5 +247,7 @@ router.delete('/:id', requiresAdmin, (req, res, next) => {
     });
 
 });
+
+initializeAdminKey();
 
 module.exports = router;
