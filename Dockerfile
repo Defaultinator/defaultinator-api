@@ -6,4 +6,6 @@ COPY ["api/package.json", "api/package-lock.json*", "./"]
 RUN npm install
 
 COPY api .
-CMD [ "npm", "run", "dev"]
+# TODO: avoid using npm script
+ENTRYPOINT ["npm", "run"]
+CMD ["dev"]
