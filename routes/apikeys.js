@@ -164,9 +164,15 @@ router.get('/', requiresAdmin, (req, res, next) => {
  */
 router.post('/', requiresAdmin, async (req, res, next) => {
   // TODO: Check to see if the key is already in use.
+
+  const { email, notes, isAdmin = false } = req.body;
+
   const apiKey = new APIKey({
     apiKey: uuidv4(),
-    ...req.body,
+    email: email,
+    notes: notes,
+    isAdmin: isAdmin,
+    isRootKey: false,
   });
 
   await apiKey.save();
