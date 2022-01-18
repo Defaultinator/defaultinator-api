@@ -7,7 +7,9 @@
 The following environment variables can be set in a `.env` file or on the command line. An example with all default values is listed below.
 
 ```
-PORT=3000
+PORT=3001
+DATABASE_URI="mongodb://localhost:27017/defaultinator"
+ROOT_KEY=
 ```
 
 ### Development

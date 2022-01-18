@@ -13,6 +13,7 @@ const dictionaryRouter = require('./routes/dictionary');
 const apikeyRouter = require('./routes/apikeys');
 
 const app = express();
+
 mongoose.connect(DATABASE_URI, { useNewUrlParser: true , useUnifiedTopology: true})
   .then(() => {
     console.log('connected to mongodb');
