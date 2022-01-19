@@ -8,19 +8,24 @@ const mongoosePaginate = require('mongoose-paginate');
  *     APIKey:
  *       type: object
  *       properties:
+ *         apiKey:
+ *           type: string
+ *           example: abcdef0123456789
  *         email:
  *           type: string
  *           example: foo@bar.com
- *           required: true
  *         notes:
  *           type: string
  *           example: A fine human, and excellent hacker.
- *           required: true
  *         isAdmin:
+ *           type: boolean
+ *           example: false
+ *         isRootKey:
  *           type: boolean
  *           example: false
  */
 const APIKeySchema = mongoose.Schema({
+  apiKey: String,
   email: {
     type: String,
     required: true,
@@ -29,7 +34,8 @@ const APIKeySchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  isAdmin: Boolean
+  isAdmin: Boolean,
+  isRootKey: Boolean,
 });
 
 /**
