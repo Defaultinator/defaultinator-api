@@ -1,7 +1,7 @@
 const express = require('express');
-const { v4 : uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const {
-  requiresAdmin, 
+  requiresAdmin,
   requiresKey,
   AUTH_HEADER,
 } = require('../middleware/auth');
@@ -20,10 +20,10 @@ const RESULTS_PER_PAGE = 20;
 
 // Create the root admin key if it doesn't exist already
 const initializeAdminKey = async () => {
-  let rootKey = await APIKey.findOne({isRootKey: true});
+  let rootKey = await APIKey.findOne({ isRootKey: true });
 
   // If the root API key doesn't exist, make it
-  if(!rootKey) {
+  if (!rootKey) {
     console.log(`No root key found! Generating one for you.`);
     const apiKey = rootKey = new APIKey({
       apiKey: ROOT_KEY || uuidv4(),
@@ -32,7 +32,7 @@ const initializeAdminKey = async () => {
       isAdmin: true,
       isRootKey: true,
     });
-  
+
     await apiKey.save();
   };
 
@@ -68,16 +68,16 @@ router.get('/keyinfo', requiresKey, async (req, res, next) => {
   const { headers } = req;
 
   try {
-    if('x-api-key' in headers) {
-      res.send(await APIKey.findOne({apiKey: headers[AUTH_HEADER]}));
+    if ('x-api-key' in headers) {
+      res.send(await APIKey.findOne({ apiKey: headers[AUTH_HEADER] }));
     } else {
-      res.status(500).send({message: "X-API-KEY not present in headers"});
+      res.status(500).send({ message: "X-API-KEY not present in headers" });
     }
   } catch (e) {
     console.log(e);
-    res.status(500).send({message: "Unknown error."});
+    res.status(500).send({ message: "Unknown error." });
   }
-  
+
 });
 
 /**
@@ -108,8 +108,8 @@ router.get('/keyinfo', requiresKey, async (req, res, next) => {
  *         $ref: '#/components/responses/ForbiddenError'
  */
 router.get('/:id', requiresAdmin, async (req, res, next) => {
-  const {id = ''} = req.params;
-  res.send(await APIKey.findOne({_id: id}));
+  const { id = '' } = req.params;
+  res.send(await APIKey.findOne({ _id: id }));
 });
 
 /**
@@ -135,9 +135,9 @@ router.get('/:id', requiresAdmin, async (req, res, next) => {
  *         $ref: '#/components/responses/ForbiddenError'
  */
 router.get('/', requiresAdmin, (req, res, next) => {
-  const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
+  const { page = 1, limit = RESULTS_PER_PAGE } = req.query;
 
-  APIKey.paginate({}, {page: page, limit: parseInt(limit)}, (err, docs) => {
+  APIKey.paginate({}, { page: page, limit: parseInt(limit) }, (err, docs) => {
     res.send(docs);
   });
 });
@@ -170,10 +170,14 @@ router.get('/', requiresAdmin, (req, res, next) => {
  *         $ref: '#/components/responses/ForbiddenError'
  */
 router.post('/', requiresAdmin, async (req, res, next) => {
-  // TODO: Check to see if the key is already in use.
+  const { email, notes, isAdmin = false } = req.body;
+
   const apiKey = new APIKey({
     apiKey: uuidv4(),
-    ...req.body,
+    email: email,
+    notes: notes,
+    isAdmin: isAdmin,
+    isRootKey: false,
   });
 
   await apiKey.save();
@@ -246,11 +250,11 @@ router.post('/', requiresAdmin, async (req, res, next) => {
  *         $ref: '#/components/responses/ForbiddenError'
  */
 router.delete('/:id', requiresAdmin, (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
-  APIKey.deleteOne({_id: id})
+  APIKey.deleteOne({ _id: id })
     .then(() => {
-      res.send({message: "Success"});
+      res.send({ message: "Success" });
     });
 
 });
