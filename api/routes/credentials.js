@@ -1,8 +1,8 @@
 const express = require('express');
-const {CPE2_3_URI} = require('cpe');
-const {flattenObject} = require('../util/flatten');
+const { CPE2_3_URI } = require('cpe');
+const { flattenObject } = require('../util/flatten');
 
-const {Credential} = require('../models/Credentials');
+const { Credential } = require('../models/Credentials');
 
 const {
   requiresAdmin,
@@ -29,20 +29,20 @@ router.get('/typeahead', (req, res, next) => {
     edition,
   } = req.query;
 
-  if(!field) res.status(500).send({"message": "The \'field\' parameter is required."});
+  if (!field) res.status(500).send({ "message": "The \'field\' parameter is required." });
 
   const attrs = {
-    ...(part && {part: part}),
-    ...(vendor && {vendor: vendor}),
-    ...(product && {product: product}),
-    ...(version && {version: version}),
-    ...(update && {update: update}),
-    ...(language && {language: language}),
-    ...(edition && {edition: edition}),
+    ...(part && { part: part }),
+    ...(vendor && { vendor: vendor }),
+    ...(product && { product: product }),
+    ...(version && { version: version }),
+    ...(update && { update: update }),
+    ...(language && { language: language }),
+    ...(edition && { edition: edition }),
   };
 
   const matches = {
-    $match: flattenObject({cpe: attrs}),
+    $match: flattenObject({ cpe: attrs }),
   };
 
   Credential.aggregate([
@@ -53,12 +53,12 @@ router.get('/typeahead', (req, res, next) => {
           {
             $group: {
               _id: `$cpe.${field}`,
-              count: {$sum: 1}
+              count: { $sum: 1 }
             }
           },
           {
             $match: {
-              _id: {$regex: new RegExp('^' + prefix, 'i')}
+              _id: { $regex: new RegExp('^' + prefix, 'i') }
             },
           },
           {
@@ -71,7 +71,7 @@ router.get('/typeahead', (req, res, next) => {
     }
   ])
     .then((docs) => res.send(docs[0]['results'].slice(0, count)))
-    .catch((err) => res.status(500).send({"message": err}));
+    .catch((err) => res.status(500).send({ "message": err }));
 });
 
 /**
@@ -106,9 +106,9 @@ router.get('/typeahead', (req, res, next) => {
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  */
- router.get('/search', requiresKey, (req, res, next) => {
+router.get('/search', requiresKey, (req, res, next) => {
   const {
-    page = 1, 
+    page = 1,
     limit = RESULTS_PER_PAGE,
     part,
     vendor,
@@ -117,28 +117,79 @@ router.get('/typeahead', (req, res, next) => {
     username,
     password,
   } = req.query;
-  
+
   // TODO: Need to revisit this. I don't think this matches the Swagger docs?
   const searchCpe = {
-    ...(part && {part, part}),
-    ...(vendor && {vendor, vendor}),
-    ...(product && {product, product}),
-    ...(version && {version, version}),
+    ...(part && { part, part }),
+    ...(vendor && { vendor, vendor }),
+    ...(product && { product, product }),
+    ...(version && { version, version }),
   };
 
   const queryFields = {
     cpe: searchCpe,
-    ...(username && {username: username}),
-    ...(password && {password: password}),
+    ...(username && { username: username }),
+    ...(password && { password: password }),
   };
 
   // TODO: This is not following the schema
   // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
-  Credential.paginate(flattenObject(queryFields), {page: page, limit: parseInt(limit)}, (err, docs) => {
+  Credential.paginate(flattenObject(queryFields), { page: page, limit: parseInt(limit) }, (err, docs) => {
     res.send(docs);
   });
 
 });
+
+/**
+ * @swagger
+ * /credentials/{id}/verify:
+ *   get:
+ *     summary: Verifies credential
+ *     description: Toggles the verification status of a credential
+ *     tags:
+ *       - Credentials
+ *     security:
+ *       - ApiKeyAuth: []
+ *     parameters:
+ *     - name: body
+ *       in: body
+ *       description: The verification state to set on the credential
+ *       required: true
+ *       schema:
+ *         type: object
+ *         properties:
+ *           isVerified:
+ *             type: boolean
+ *             required: true
+ *             example: true
+ *     responses:
+ *       200:
+ *         description: Returns the updated credential object.
+ *         schema:
+ *           $ref: '#/components/schemas/Credential'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
+ */
+router.post('/:id/verify', requiresAdmin, async (req, res, next) => {
+  const { id } = req.params;
+  const { isVerified } = req.body;
+
+  if (isVerified == null) res.status(500).send({ "message": "Missing required field \"isVerified\"." })
+
+  Credential.findByIdAndUpdate(
+    id,
+    { isVerified: isVerified },
+    { new: true }
+  ).then((data) => {
+    res.send(data);
+  }
+  ).catch((err) => {
+    res.status(500).send({ "message": "Failed to validate record" });
+  });
+});
+
 
 /**
  * @swagger
@@ -166,8 +217,15 @@ router.get('/typeahead', (req, res, next) => {
  *         $ref: '#/components/responses/UnauthorizedError'
  */
 router.get('/:id', requiresKey, async (req, res, next) => {
-  const {id = ''} = req.params;
-  res.send(await Credential.findOne({_id: id}));
+  const { id = '' } = req.params;
+
+  Credential.findOne({ _id: id })
+    .then((data) => {
+      res.send(data);
+    }
+    ).catch((err) => {
+      res.status(500).send({ "message": "Failed to update record" });
+    });
 });
 
 /**
@@ -189,11 +247,11 @@ router.get('/:id', requiresKey, async (req, res, next) => {
  *         $ref: '#/components/responses/UnauthorizedError'
  */
 router.get('/', requiresKey, (req, res, next) => {
-  const {page = 1, limit = RESULTS_PER_PAGE} = req.query;
+  const { page = 1, limit = RESULTS_PER_PAGE } = req.query;
 
   console.log(page, limit);
 
-  Credential.paginate({}, {page: page, limit: parseInt(limit)}, (err, docs) => {
+  Credential.paginate({}, { page: page, limit: parseInt(limit) }, (err, docs) => {
     res.send(docs);
   });
 });
@@ -229,8 +287,13 @@ router.post('/', requiresKey, async (req, res, next) => {
     ...req.body
   });
 
-  await credential.save();
-  res.send(credential);
+  credential.save()
+    .then((data) => {
+      res.send(data);
+    }
+    ).catch((err) => {
+      res.status(500).send({ "message": "Failed to save record" });
+    });
 });
 
 /**
@@ -266,23 +329,27 @@ router.post('/', requiresKey, async (req, res, next) => {
  *         $ref: '#/components/responses/ForbiddenError'
  */
 router.put('/:id', requiresAdmin, (req, res, next) => {
-  const {id} = req.params;
-  const updates = req.body;
+  const { id } = req.params;
+  const { username, password, cpe, protocol, references } = req.body;
 
-  //return res.status(404).send('Not implemented');
+  const updates = {
+    ...(username && { username: username }),
+    ...(password && { password: password }),
+    ...(cpe && { cpe: cpe }),
+    ...(protocol && { protocol: protocol }),
+    ...(references && { references: references }),
+  };
+
   Credential.findByIdAndUpdate(
     id,
     flattenObject(updates),
-    {new: true}
+    { new: true }
   ).then((data) => {
-      res.send(data);
-    }
+    res.send(data);
+  }
   ).catch((err) => {
-    res.status(500).send({"message": "Failed to update record"});
+    res.status(500).send({ "message": "Failed to update record" });
   });
-
-  res.send(`OK ${id}`);
-
 });
 
 /**
@@ -316,11 +383,11 @@ router.put('/:id', requiresAdmin, (req, res, next) => {
  *         $ref: '#/components/responses/ForbiddenError'
  */
 router.delete('/:id', requiresAdmin, (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
 
-  Credential.deleteOne({_id: id})
+  Credential.deleteOne({ _id: id })
     .then(() => {
-      res.send({id: id});
+      res.send({ id: id });
     });
 
 });

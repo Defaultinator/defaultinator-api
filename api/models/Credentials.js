@@ -21,6 +21,10 @@ const { CpeSchema } = require('./CPE');
  *         protocol:
  *           type: string
  *           example: telnet
+ *         isVerified:
+ *           type: boolean
+ *           description: Has the credential been verified by an admin
+ *           example: false
  *         references:
  *           type: array
  *           items:
@@ -36,8 +40,38 @@ const credentialSchema = mongoose.Schema({
   username: String,
   password: String,
   protocol: String,
+  isVerified: Boolean,
   references: [String],
 });
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     CredentialUpdate:
+ *       type: object
+ *       properties:
+ *         username:
+ *           type: string
+ *           description: The default username
+ *           example: admin
+ *         password:
+ *           type: string
+ *           description: The default password
+ *           example: admin
+ *         protocol:
+ *           type: string
+ *           example: telnet
+ *         references:
+ *           type: array
+ *           items:
+ *             type: string
+ *           example:
+ *             - https://www.linksys.com
+ *             - https://www.example.com
+ *         cpe:
+ *           $ref: '#/components/schemas/CPE'
+ */
 
 /**
  * @swagger
