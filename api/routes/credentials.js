@@ -58,7 +58,7 @@ router.get('/typeahead', (req, res, next) => {
           },
           {
             $match: {
-              _id: { $regex: new RegExp('^' + prefix, 'i') }
+              _id: { $regex: new RegExp(prefix, 'i') }
             },
           },
           {
