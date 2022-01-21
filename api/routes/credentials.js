@@ -151,7 +151,7 @@ router.get('/search', requiresKey, (req, res, next) => {
 /**
  * @swagger
  * /credentials/{id}/verify:
- *   get:
+ *   post:
  *     summary: Verifies credential
  *     description: Toggles the verification status of a credential
  *     tags:
@@ -159,6 +159,12 @@ router.get('/search', requiresKey, (req, res, next) => {
  *     security:
  *       - ApiKeyAuth: []
  *     parameters:
+ *     - in: path
+ *       name: id
+ *       required: false
+ *       description: ID of the credential object to fetch
+ *       schema:
+ *         type: integer
  *     - name: body
  *       in: body
  *       description: The verification state to set on the credential
