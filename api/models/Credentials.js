@@ -34,14 +34,68 @@ const { CpeSchema } = require('./CPE');
  *             - https://www.example.com
  *         cpe:
  *           $ref: '#/components/schemas/CPE'
+ *         edits:
+ *           type: array
+ *           items:
+ *             type: object
+ *             properties:
+ *               apiKey:
+ *                 type: string
+ *                 description: The API key that made the edit.
+ *                 required: true
+ *                 example: abcdef0123456789
+ *               timestamp:
+ *                 type: number
+ *                 description: The epoch timestamp at the time the edit was applied
+ *                 required: true
+ *                 example: 1642713858
+ *               edit:
+ *                 type: object
+ *                 description: The changes that were applied.
+ *                 required: true
+ *                 properties:
+ *                   username:
+ *                     type: string
+ *                     description: The default username
+ *                     example: admin
+ *                   password:
+ *                     type: string
+ *                     description: The default password
+ *                     example: admin
+ *                   protocol:
+ *                     type: string
+ *                     example: telnet
+ *                   references:
+ *                     type: array
+ *                     items:
+ *                       type: string
+ *                     example:
+ *                       - https://www.linksys.com
+ *                       - https://www.example.com
+ *                   cpe:
+ *                     $ref: '#/components/schemas/CPE'
  */
 const credentialSchema = mongoose.Schema({
-  cpe: mongoose.Schema(CpeSchema, {_id: false}),
+  cpe: mongoose.Schema(CpeSchema, { _id: false }),
   username: String,
   password: String,
   protocol: String,
   isVerified: Boolean,
   references: [String],
+  edits: [{
+    apiKey: String,
+    timestamp: Number,
+    edit: {
+      username: String,
+      password: String,
+      protocol: String,
+      references: {
+        type: [String],
+        default: undefined,
+      },
+      cpe: mongoose.Schema(CpeSchema, { _id: false }),
+    }
+  }],
 });
 
 /**
