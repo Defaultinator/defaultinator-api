@@ -135,9 +135,17 @@ router.get('/search', requiresKey, (req, res, next) => {
   // TODO: This is not following the schema
   // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
   Credential.paginate(flattenObject(queryFields), { page: page, limit: parseInt(limit) }, (err, docs) => {
-    res.send(docs);
+    res.send({
+      ...docs,
+      docs: docs.docs.map((doc) => ({
+        ...doc.toObject(),
+        edits: doc.toObject().edits.map((edit) => {
+          delete edit['apiKey'];
+          return edit;
+        })
+      }))
+    });
   });
-
 });
 
 /**
@@ -183,7 +191,13 @@ router.post('/:id/verify', requiresAdmin, async (req, res, next) => {
     { isVerified: isVerified },
     { new: true }
   ).then((data) => {
-    res.send(data);
+    res.send({
+      ...data.toObject(),
+      edits: data.toObject().edits.map((edit) => {
+        delete edit['apiKey'];
+        return edit;
+      }),
+    });
   }
   ).catch((err) => {
     res.status(500).send({ "message": "Failed to validate record" });
@@ -221,7 +235,13 @@ router.get('/:id', requiresKey, async (req, res, next) => {
 
   Credential.findOne({ _id: id })
     .then((data) => {
-      res.send(data);
+      res.send({
+        ...data.toObject(),
+        edits: data.toObject().edits.map((edit) => {
+          delete edit['apiKey'];
+          return edit;
+        }),
+      });
     }
     ).catch((err) => {
       res.status(500).send({ "message": "Failed to update record" });
@@ -249,10 +269,18 @@ router.get('/:id', requiresKey, async (req, res, next) => {
 router.get('/', requiresKey, (req, res, next) => {
   const { page = 1, limit = RESULTS_PER_PAGE } = req.query;
 
-  console.log(page, limit);
-
   Credential.paginate({}, { page: page, limit: parseInt(limit) }, (err, docs) => {
-    res.send(docs);
+    // Remove the apiKey
+    res.send({
+      ...docs,
+      docs: docs.docs.map((doc) => ({
+        ...doc.toObject(),
+        edits: doc.toObject().edits.map((edit) => {
+          delete edit['apiKey'];
+          return edit;
+        })
+      }))
+    });
   });
 });
 
@@ -272,7 +300,7 @@ router.get('/', requiresKey, (req, res, next) => {
  *       description: Credential to save
  *       required: true
  *       schema:
- *         $ref: '#/components/schemas/Credential'
+ *         $ref: '#/components/schemas/CredentialUpdate'
  *     responses:
  *       200:
  *         description: Returns the credential object that was saved.
@@ -282,16 +310,39 @@ router.get('/', requiresKey, (req, res, next) => {
  *         $ref: '#/components/responses/UnauthorizedError'
  */
 router.post('/', requiresKey, async (req, res, next) => {
+  const { username, password, cpe, protocol, references } = req.body;
+  const { key } = req;
+
+  const updates = {
+    ...(username && { username: username }),
+    ...(password && { password: password }),
+    ...(cpe && { cpe: cpe }),
+    ...(protocol && { protocol: protocol }),
+    ...(references && { references: references }),
+  };
+
   // TODO: More validation/testing
   const credential = new Credential({
-    ...req.body
+    ...updates,
+    edits: [{
+      apiKey: key,
+      timestamp: Date.now(),
+      edit: updates,
+    }],
   });
 
   credential.save()
     .then((data) => {
-      res.send(data);
+      res.send({
+        ...data.toObject(),
+        edits: data.toObject().edits.map((edit) => {
+          delete edit['apiKey'];
+          return edit;
+        }),
+      });
     }
     ).catch((err) => {
+      console.log(err);
       res.status(500).send({ "message": "Failed to save record" });
     });
 });
@@ -317,7 +368,7 @@ router.post('/', requiresKey, async (req, res, next) => {
  *       in: body
  *       description: The Credential details to be updated
  *       schema:
- *         $ref: '#/components/schemas/Credential'
+ *         $ref: '#/components/schemas/CredentialUpdate'
  *     responses:
  *       200:
  *         description: Returns the credential object that was updated.
@@ -330,6 +381,7 @@ router.post('/', requiresKey, async (req, res, next) => {
  */
 router.put('/:id', requiresAdmin, (req, res, next) => {
   const { id } = req.params;
+  const { key } = req;
   const { username, password, cpe, protocol, references } = req.body;
 
   const updates = {
@@ -340,15 +392,31 @@ router.put('/:id', requiresAdmin, (req, res, next) => {
     ...(references && { references: references }),
   };
 
+  const edit = {
+    edit: updates,
+    timestamp: Date.now(),
+    apiKey: key,
+  };
+
   Credential.findByIdAndUpdate(
     id,
-    flattenObject(updates),
+    {
+      $set: flattenObject(updates),
+      $push: { edits: edit }
+    },
     { new: true }
   ).then((data) => {
-    res.send(data);
+    res.send({
+      ...data.toObject(),
+      edits: data.toObject().edits.map((edit) => {
+        delete edit['apiKey'];
+        return edit;
+      }),
+    });
   }
   ).catch((err) => {
-    res.status(500).send({ "message": "Failed to update record" });
+    console.log(err);
+    res.status(500).send({ "message": "Failed to update record." });
   });
 });
 
