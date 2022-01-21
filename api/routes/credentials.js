@@ -244,7 +244,7 @@ router.get('/:id', requiresKey, async (req, res, next) => {
       });
     }
     ).catch((err) => {
-      res.status(500).send({ "message": "Failed to update record" });
+      res.status(500).send({ "message": "Failed to get the requested record." });
     });
 });
 
@@ -343,7 +343,7 @@ router.post('/', requiresKey, async (req, res, next) => {
     }
     ).catch((err) => {
       console.log(err);
-      res.status(500).send({ "message": "Failed to save record" });
+      res.status(500).send({ "message": "Failed to save record." });
     });
 });
 
@@ -397,6 +397,18 @@ router.put('/:id', requiresAdmin, (req, res, next) => {
     timestamp: Date.now(),
     apiKey: key,
   };
+
+  Credential.findOne({ _id: id })
+  .then((data) => {
+    const { isVerified } = data.toObject();
+    if(isVerified) {
+      res.status(403).send({"message": "Cannot update a verified record."});
+      next();
+    }
+  }
+  ).catch((err) => {
+    res.status(500).send({ "message": "Failed to update record" });
+  });
 
   Credential.findByIdAndUpdate(
     id,
