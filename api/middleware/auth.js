@@ -37,6 +37,7 @@ const requiresKey = async (req, res, next) => {
     APIKey.findOne({apiKey: headers[AUTH_HEADER]})
       .then((key) => {
         if (key) {
+          req.key = key.apiKey;
           next();
         } else {
           res.status(401).send({message: "Invalid API key provided."});
@@ -55,6 +56,7 @@ const requiresAdmin = async (req, res, next) => {
       .then((key) => {
         if (key) {
           if(key.isAdmin) {
+            req.key = key.apiKey;
             next();
           } else {
             res.status(403).send({message: "User is not an Admin."});
