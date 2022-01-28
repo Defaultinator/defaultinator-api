@@ -16,7 +16,7 @@ const { ROOT_KEY } = require('../config/constants');
 const router = express.Router();
 
 // TODO: Move to config/constants?
-const RESULTS_PER_PAGE = 20;
+const RESULTS_PER_PAGE = 50;
 
 // Create the root admin key if it doesn't exist already
 const initializeAdminKey = async () => {
@@ -186,7 +186,7 @@ router.post('/', requiresAdmin, async (req, res, next) => {
 
 /**
  * @swagger
- * /apiKeys/{id}:
+ * /apikeys/{id}:
  *   put:
  *     summary: Update an APIKey
  *     description: Returns an APIKey by ID
@@ -216,8 +216,29 @@ router.post('/', requiresAdmin, async (req, res, next) => {
  *       404:
  *         $ref: '#/components/responses/ForbiddenError'
  */
-// router.put('/:id', requiresAdmin, (req, res, next) => {
-// });
+router.put('/:id', requiresAdmin, (req, res, next) => {
+  const { id } = req.params;
+  const { email, notes, isAdmin } = req.body;
+
+  const updates = {
+    ...(email && { email: email }),
+    ...(notes && { notes: notes }),
+    ...(isAdmin && { isAdmin: isAdmin }),
+  };
+
+  APIKey.findByIdAndUpdate(
+    id,
+    updates,
+    { new: true }
+  ).then((data) => {
+    res.send(data);
+  }
+  ).catch((err) => {
+    console.log(err);
+    res.status(500).send({ "message": "Failed to update record." });
+  });
+
+});
 
 /**
  * @swagger
