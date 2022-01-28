@@ -405,37 +405,37 @@ router.put('/:id', requiresAdmin, (req, res, next) => {
   };
 
   Credential.findOne({ _id: id })
-  .then((data) => {
-    const { isVerified } = data.toObject();
-    if(isVerified) {
-      res.status(403).send({"message": "Cannot update a verified record."});
-      next();
-    }
-  }
-  ).catch((err) => {
-    res.status(500).send({ "message": "Failed to update record" });
-  });
-
-  Credential.findByIdAndUpdate(
-    id,
-    {
-      $set: flattenObject(updates),
-      $push: { edits: edit }
-    },
-    { new: true }
-  ).then((data) => {
-    res.send({
-      ...data.toObject(),
-      edits: data.toObject().edits.map((edit) => {
-        delete edit['apiKey'];
-        return edit;
-      }),
+    .then((data) => {
+      const { isVerified } = data.toObject();
+      if (isVerified) {
+        res.status(403).send({ "message": "Cannot update a verified record." });
+        next();
+      } else {
+        Credential.findByIdAndUpdate(
+          id,
+          {
+            $set: flattenObject(updates),
+            $push: { edits: edit }
+          },
+          { new: true }
+        ).then((data) => {
+          res.send({
+            ...data.toObject(),
+            edits: data.toObject().edits.map((edit) => {
+              delete edit['apiKey'];
+              return edit;
+            }),
+          });
+        }
+        ).catch((err) => {
+          console.log(err);
+          res.status(500).send({ "message": "Failed to update record." });
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({ "message": "Failed to update record" });
     });
-  }
-  ).catch((err) => {
-    console.log(err);
-    res.status(500).send({ "message": "Failed to update record." });
-  });
 });
 
 /**
