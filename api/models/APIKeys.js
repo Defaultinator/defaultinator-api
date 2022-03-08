@@ -23,6 +23,9 @@ const mongoosePaginate = require('mongoose-paginate');
  *         isRootKey:
  *           type: boolean
  *           example: false
+  *         tourComplete:
+ *           type: boolean
+ *           example: false
  */
 const APIKeySchema = mongoose.Schema({
   apiKey: String,

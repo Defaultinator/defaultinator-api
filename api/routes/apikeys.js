@@ -68,7 +68,7 @@ router.get('/keyinfo', requiresKey, async (req, res, next) => {
   const { headers } = req;
 
   try {
-    if ('x-api-key' in headers) {
+    if (AUTH_HEADER in headers) {
       res.send(await APIKey.findOne({ apiKey: headers[AUTH_HEADER] }));
     } else {
       res.status(500).send({ message: "X-API-KEY not present in headers" });
@@ -182,6 +182,52 @@ router.post('/', requiresAdmin, async (req, res, next) => {
 
   await apiKey.save();
   res.send(apiKey);
+});
+
+/**
+ * @swagger
+ * /apikeys/tourcomplete:
+ *   post:
+ *     summary: Set product tour to complete
+ *     description: Marks that the user has completed the product tour and should not be presented with it upon return.
+ *     tags:
+ *       - API Keys
+ *     security:
+ *       - ApiKeyAuth: []
+ *     parameters:
+ *     - name: body
+ *       in: body
+ *       description: Credential to save
+ *       required: true
+ *       schema:
+ *         $ref: '#/components/schemas/APIKeySubmission'
+ *     responses:
+ *       200:
+ *         description: Returns the credential object that was saved.
+ *         schema:
+ *           $ref: '#/components/schemas/Credential'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       404:
+ *         $ref: '#/components/responses/ForbiddenError'
+ */
+router.post('/tourcomplete', requiresKey, async (req, res, next) => {
+  const { headers } = req;
+
+  try {
+    if (AUTH_HEADER in headers) {
+      res.send(await APIKey.findOneAndUpdate(
+        { apiKey: headers[AUTH_HEADER] },
+        { tourComplete: true },
+        { new: true }
+      ));
+    } else {
+      res.status(500).send({ message: "X-API-KEY not present in headers" });
+    }
+  } catch (e) {
+    console.log(e);
+    res.status(500).send({ message: "Unknown error." });
+  };
 });
 
 /**
