@@ -103,7 +103,7 @@ router.get('/typeahead', requiresKey, (req, res, next) => {
     edition,
   } = req.query;
 
-  if(!field) res.status(500).send({"message": "The \'field\' parameter is required."});
+  if(!field) throw Error("The \'field\' parameter is required.");
 
   const attrs = {
     ...(part && {part: part}),
