@@ -12,6 +12,10 @@ const credentialRouter = require('./routes/credentials');
 const dictionaryRouter = require('./routes/dictionary');
 const apikeyRouter = require('./routes/apikeys');
 
+const CORS_OPTIONS = {
+  origin: CORS_DOMAIN,
+};
+
 const app = express();
 
 mongoose.connect(DATABASE_URI, { useNewUrlParser: true , useUnifiedTopology: true})
@@ -58,8 +62,7 @@ app.use(
   swaggerUi.setup(specs)
 );
 
-app.use(cors());
-app.options(CORS_DOMAIN, cors());
+app.use(cors(CORS_OPTIONS));
 
 app.use(logger('dev'));
 app.use(express.json());
