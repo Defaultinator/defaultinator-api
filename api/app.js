@@ -6,7 +6,7 @@ const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const mongoose = require('mongoose');
 
-const { DATABASE_URI } = require('./config/constants');
+const { DATABASE_URI, CORS_DOMAIN } = require('./config/constants');
 
 const credentialRouter = require('./routes/credentials');
 const dictionaryRouter = require('./routes/dictionary');
@@ -33,7 +33,7 @@ const options = {
       contact: {
         name: "Rapid7",
         url: "https://rapid7.com",
-        email: "cbarnard@rapid7.cm",
+        email: "admin@defaultinator.com",
       },
     },
     servers: [
@@ -59,7 +59,7 @@ app.use(
 );
 
 app.use(cors());
-app.options('*', cors());
+app.options(CORS_DOMAIN, cors());
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -77,9 +77,13 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
-  console.log(err);
   res.locals.message = err.message;
-  //res.locals.error = req.app.get('env') === 'development' ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // Full stack traces of all errors. Theses should go somewhere better.
+  if(err?.status >= 400 && err?.status <= 599) {
+    console.error(err)
+  }
 
   // render the error page
   res.status(err.status || 500);
