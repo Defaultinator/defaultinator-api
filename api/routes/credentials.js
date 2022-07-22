@@ -77,7 +77,7 @@ router.get('/typeahead', (req, res, next) => {
 /**
  * @swagger
  * /credentials/search:
- *   post:
+ *   get:
  *     description: Returns a list of all known credentials that match a given CPE string.
  *     summary: Get a list of credentials by CPE.
  *     tags:
@@ -85,17 +85,53 @@ router.get('/typeahead', (req, res, next) => {
  *     security:
  *       - ApiKeyAuth: []
  *     parameters:
- *     - name: "body"
- *       in: "body"
- *       description: "The CPE string to query."
- *       required: true
+ *     - name: page
+ *       in: query
+ *       description: "The page of results to retrieve."
+ *       required: false
  *       schema:
- *         type: object
- *         properties:
- *           cpe:
- *             type: "string"
- *         example:
- *           cpe: "cpe:/a:linksys:wrt54g"
+ *         type: number
+ *         example: 1
+ *     - name: limit
+ *       in: query
+ *       description: "The number of results to return per page."
+ *       required: false
+ *       schema:
+ *         type: number
+ *         example: 10
+ *     - name: part
+ *       in: query
+ *       description: "The part field of the CPE to search for."
+ *       required: false
+ *       schema:
+ *         type: string
+ *         example: a
+ *     - name: vendor
+ *       in: query
+ *       description:  "The vendor field of the CPE to search for."
+ *       required: false
+ *       schema:
+ *         type: string
+ *         example: linksys
+ *     - name: product
+ *       in: query
+ *       description:  "The product field of the CPE to search for."
+ *       required: false
+ *       schema:
+ *         type: string
+ *         example: wrt54g
+ *     - name: username
+ *       in: query
+ *       description:  "The username to search for."
+ *       required: false
+ *       schema:
+ *         type: string
+ *     - name: password
+ *       in: query
+ *       description: "The password to search for."
+ *       required: false
+ *       schema:
+ *         type: string
  *     responses:
  *       200:
  *         description: Returns a list of credentials that match the provided CPE string.
