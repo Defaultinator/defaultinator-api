@@ -105,7 +105,7 @@ router.get('/typeahead', (req, res, next) => {
  *       required: false
  *       schema:
  *         type: string
- *         example: a
+ *         example: h
  *     - name: vendor
  *       in: query
  *       description:  "The vendor field of the CPE to search for."
@@ -132,6 +132,13 @@ router.get('/typeahead', (req, res, next) => {
  *       required: false
  *       schema:
  *         type: string
+*     - name: unique
+ *       in: query
+ *       description: "Only return unique credential pairs with no CPE information."
+ *       required: false
+ *       schema:
+ *         type: boolean
+ *       default: false
  *     responses:
  *       200:
  *         description: Returns a list of credentials that match the provided CPE string.
@@ -152,6 +159,7 @@ router.get('/search', requiresKey, (req, res, next) => {
     version,
     username,
     password,
+    unique = false,
   } = req.query;
 
   // TODO: Need to revisit this. I don't think this matches the Swagger docs?
@@ -168,20 +176,33 @@ router.get('/search', requiresKey, (req, res, next) => {
     ...(password && { password: password }),
   };
 
-  // TODO: This is not following the schema
-  // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
-  Credential.paginate(flattenObject(queryFields), { page: page, limit: parseInt(limit) }, (err, docs) => {
-    res.send({
-      ...docs,
-      docs: docs.docs.map((doc) => ({
-        ...doc.toObject(),
-        edits: doc.toObject().edits.map((edit) => {
-          delete edit['apiKey'];
-          return edit;
-        })
-      }))
-    });
-  });
+  if (unique === 'true') {
+    const aggregate = Credential.aggregate([
+      { $match: { ...flattenObject({ cpe: searchCpe }), ...{ ...(username && { username: username }), ...(password && { password: password }) } } },
+      { $group: { "_id": { username: "$username", password: "$password" } } },
+    ]);
+    Credential
+      .aggregatePaginate(aggregate, { page: page, limit: parseInt(limit) })
+      // TODO: This sends [{_id: {username: str, password: str}}] which does not match the schema. Wonder if it needs to be it's own endpoint
+      .then((docs) => res.send(docs));
+  } else {
+    // TODO: This is not following the schema
+    // https://stackoverflow.com/questions/5830513/how-do-i-limit-the-number-of-returned-items
+    Credential
+      .paginate(flattenObject(queryFields), { page: page, limit: parseInt(limit) })
+      .then((docs) => {
+        res.send({
+          ...docs,
+          docs: docs.docs.map((doc) => ({
+            ...doc.toObject(),
+            edits: doc.toObject().edits.map((edit) => {
+              delete edit['apiKey'];
+              return edit;
+            })
+          }))
+        });
+      });
+  }
 });
 
 /**

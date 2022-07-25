@@ -83,6 +83,8 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  console.log(err)
+
   // Full stack traces of all errors. Theses should go somewhere better.
   if(err?.status >= 400 && err?.status <= 599) {
     console.error(err)
